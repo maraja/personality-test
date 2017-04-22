@@ -1,0 +1,56 @@
+/* -------------- */
+            
+.button-row {
+    display: inline-box;
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.button-row > div {
+    position: relative;
+    width: 160px;
+    height: 50px;
+    margin: 0 15px;
+    perspective: 1000px;
+}
+.button-row > div > a {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform 0.25s;
+}
+.button-row > div > a::before, .button-row > div > a::after {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 160px;
+    height: 50px;
+    position: absolute;
+    border: 5px solid black;
+    box-sizing: border-box;
+    content: attr(title);
+    display: box;
+    display: flex;
+}
+.button-row > div > a::before {
+    background-color: #000;
+    color: #fff;
+    transform: rotateY(0deg) translateZ(25px);
+}
+.button-row > div > a::after {
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+    transform: rotateX(90deg) translateZ(25px);
+}
+.button-row > div > a:hover {
+    transform: translateZ(-25px) rotateX(-90deg);
+    cursor: pointer;
+}

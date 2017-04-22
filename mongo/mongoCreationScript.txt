@@ -1,0 +1,8 @@
+use personality-test
+db.users.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
+db.users.insert(newstuff)
+use admin
+db.createUser({ user: "admin", pwd: "P3rs0nal1tYT35T!", roles: [{role: "userAdminAnyDatabase", db: "admin"}]})
+
+ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
