@@ -1,4 +1,6 @@
 var express = require('express');
+var session = require('express-session');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,12 +9,19 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var config = require('./config');
 
-var app = express();
+app = require('express')();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+
+// Models hook in
+app.models = {
+  // accountModel: require('./mongo/models/Accounts')()
+};
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,6 +30,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session handling
+app.use(session({ secret: config.session_secret }))
 
 app.use('/', index);
 app.use('/users', users);

@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "mongoose-utils",
+        "scope": null,
+        "escapedName": "mongoose-utils",
+        "name": "mongoose-utils",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\AmitMaraj\\Documents\\Oiika\\oiika\\Oiika-Api-Server"
+    ]
+  ],
+  "_from": "mongoose-utils@latest",
+  "_id": "mongoose-utils@0.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mongoose-utils",
+  "_npmUser": {
+    "name": "snodgrass23",
+    "email": "snodgrass23@gmail.com"
+  },
+  "_npmVersion": "1.2.17",
+  "_phantomChildren": {
+    "hooks": "0.2.1"
+  },
+  "_requested": {
+    "raw": "mongoose-utils",
+    "scope": null,
+    "escapedName": "mongoose-utils",
+    "name": "mongoose-utils",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mongoose-utils/-/mongoose-utils-0.0.2.tgz",
+  "_shasum": "2a8ddf36899a1fc926335d402032badbeaa5ee81",
+  "_shrinkwrap": null,
+  "_spec": "mongoose-utils",
+  "_where": "C:\\Users\\AmitMaraj\\Documents\\Oiika\\oiika\\Oiika-Api-Server",
+  "author": {
+    "name": "Jim Snodgrass",
+    "email": "jim@skookum.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Skookum/mongoose-utils/issues"
+  },
+  "dependencies": {
+    "knox": "0.5.2",
+    "mongoose": "3.6.4"
+  },
+  "description": "collection of mongoose plugins and schemas",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "2a8ddf36899a1fc926335d402032badbeaa5ee81",
+    "tarball": "https://registry.npmjs.org/mongoose-utils/-/mongoose-utils-0.0.2.tgz"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "homepage": "https://github.com/Skookum/mongoose-utils#readme",
+  "main": "index",
+  "maintainers": [
+    {
+      "name": "snodgrass23",
+      "email": "snodgrass23@gmail.com"
+    }
+  ],
+  "name": "mongoose-utils",
+  "optionalDependencies": {},
+  "readme": "# Mongoose Utils\n\nA collection of mongoose validations, plugins, and utilities.\n\n``` js\nvar utils = require('mongoose-utils'),\n    mongoose = require('mongoose');\n\nvar User = new mongoose.Schema({\n  email         : { type: String, index: true, required:true, unique: true, validate: [utils.validate.email, 'not valid'] },\n  password      : { type: String, trim: true, required:true, validate: [utils.validate.length(4), 'required to be at least 4 characters'] }\n}, {strict:true});\n\n// Plugins\n\nUser.plugin(utils.plugin.timestamps);\nUser.plugin(utils.plugin.extendedMethods);\n\n```",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skookum/mongoose-utils.git"
+  },
+  "version": "0.0.2"
+}
