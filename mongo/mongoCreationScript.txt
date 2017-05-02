@@ -10,8 +10,13 @@ db.grantRolesToUser("admin", [ { role: "read", db: "admin" } ])
 show users
 
 use personality-test
-db.createUser({user: "dev", pwd: "P3rs0nal1tYT35T!",roles: [ { role:"readWrite", db: "personality-test" } ]}
+db.createUser({user: "dev", pwd: "P3rs0nal1tYT35T!",roles: [ { role:"readWrite", db: "personality-test" } ]})
 
 show users
+
+
+
+mongodump /username:"admin" /password:"P3rs0nal1tYT35T!" /out:"C:\Users\AmitMaraj\Google Drive\SCHOOL\Masters\Experiment\Pilot\server\data\backup"
+
 
 ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/

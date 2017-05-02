@@ -13,7 +13,12 @@ module.exports = function() {
     agreeableness: { type: Number },
     conscientiousness: { type: Number },
     neuroticism: { type: Number },
-    intellect: { type: Number }
+    intellect: { type: Number },
+    rankedPasswords: [{
+      password: {type: String, default: "" },
+      realScore: {type: Number, default: -1},
+      userScore: {type: Number, default: -1}
+    }]
   }, {strict:true, collection: 'accounts' });
 
   // Export

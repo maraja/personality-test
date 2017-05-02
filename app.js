@@ -58,4 +58,22 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+// IMPORT PASSWORDS - ZXCVBN
+// UNCOMMENT the following for the insertion of zxcvbn passwords
+
+// let zxcvbnPasswords = require('./mongo/controllers/zxcvbnPasswords');
+// let passwordConverter = require('./helpers/passwordConverter');
+
+// console.log("hello")
+// passwordConverter.convertPasswordsToJSON('./passwords/linkedin_password_leak_stats.csv')
+// .then(passwords => {
+//   zxcvbnPasswords.insertPasswords(passwords)
+//   .then(() =>{
+//     console.log("Passwords inserted successfully")
+//   })
+// }).catch(error => {
+//   console.log(error)
+// })
+
 module.exports = app;

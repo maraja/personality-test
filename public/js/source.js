@@ -1,7 +1,7 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = true;
+var dev = false;
 var userAnswers;
 
 //Initialization
@@ -17,6 +17,9 @@ $(document).ready(function() {
     case "/":
     	personalityTest();
       break;
+    case "/password-ranking-test":
+    	passwordTest();
+    	break;
     case "/personality-test":
       break;
     default:
@@ -80,6 +83,7 @@ function personalityTest() {
 	var currentQuestion = 0;
 	$('#btnClick').click(function(){
 		$(this).hide();
+		$('#content').show();
 		createQuestion();
 	});
 
@@ -89,12 +93,14 @@ function personalityTest() {
 
 			answerBubbles = []
 			if (dev) console.log(userAnswers)
-			$questionRow = $('<div>', {
+			$questionRow = $('<h1>', {
 				class: "row questionRow"
 			})
 			$answerRow = $('<div>', {
 				class: "row answerRow"
 			})
+
+			// add question to the DOM
 			$question = $('<div>', {
 				text: questions[currentQuestion]
 			})
@@ -102,9 +108,11 @@ function personalityTest() {
 
 			for (var i = 0; i < answers.length; i++){
 
+				// add answers within bubbles to the DOM
 				answerBubbles.push($('<div>', {
 					text: answers[i],
-					id: (currentQuestion+1)+"-"+(i+1)
+					id: (currentQuestion+1)+"-"+(i+1),
+					class: "no-text-cursor"
 				}))
 
 				$answerRow.append(answerBubbles[i]);
@@ -118,11 +126,11 @@ function personalityTest() {
 					// userAnswers.push(parseInt(answerNumber))
 					updateAnswer(currentQuestion, parseInt(answerNumber))
 					currentQuestion = currentQuestion + 1;
-					$( "#question" ).fadeOut( "slow", function() {
+					$( "#question" ).fadeOut( "fast", function() {
 						// Animation complete.
 						$(this).empty();
 						createQuestion();
-						$( "#question" ).fadeIn()
+						$( "#question" ).fadeIn("fast")
 					});
 
 				})
@@ -134,7 +142,7 @@ function personalityTest() {
 			$('#question').append($answerRow)
 
 		} else {
-			endPersonalityTest()
+			endPersonalityTest(true)
 		}
 	}
 
@@ -160,7 +168,7 @@ function personalityTest() {
 
 
 				if (dev) {
-					displayUserResult(factor = userAnswers[i].factor, 
+					consoleUserResult(factor = userAnswers[i].factor, 
 						count = userAnswers[i].count, 
 						keyed, 
 						score = userAnswers[i].score, 
@@ -170,7 +178,7 @@ function personalityTest() {
 		}
 	}
 
-	function displayUserResult(factor, count, keyed, score, percent) {
+	function consoleUserResult(factor, count, keyed, score, percent) {
 		console.log("factor: " + factor)
 		console.log("count: " + count)
 		console.log(keyed)
@@ -178,7 +186,9 @@ function personalityTest() {
 		console.log("percent: " + percent)
 	}
 
-	function endPersonalityTest(){
+
+	// change displayUserResults flag if wanted to display results at end of personality test
+	function endPersonalityTest(displayUserResults = false){
 
 		$('#content').hide();
 		$('#results').show();
@@ -187,16 +197,144 @@ function personalityTest() {
 		for (var i = 0; i < userAnswers.length; i++){
 				
 				personalities[userAnswers[i].name] = (userAnswers[i].percent*100);
-				$('#results').append($('<h2>', {
-					text: userAnswers[i].name + ": " + (userAnswers[i].percent*100) + "%"
-				}))
+
+				if (displayUserResults !== undefined && displayUserResults == true){
+					$('#results').append($('<h2>', {
+						text: userAnswers[i].name + ": " + (userAnswers[i].percent*100) + "%"
+					}))
+				}
 
 		}
 
-		updatePersonality(personalities)
+		updatePersonality(personalities, function(){
+			window.location.pathname = "password-ranking-test";
+		})
 	}
 
 }
+
+
+
+function passwordTest(){
+
+	// passwords given from the server are stored here
+	if (dev) console.log(passwordsFromServer)
+
+	var counter = 0
+	var userPasswords = []
+	
+	$('#btnClick').click(function(){
+		$(this).hide();
+		$('#password-test-content').show();
+	});
+
+
+	// JQUERY UI
+
+	$('#password-containers ul').each(function(index) {
+			var highlightClass = "password-container-highlight";
+		    $(this).droppable({
+		    	over: function(event, ui){
+		    		// Enable all the .droppable elements
+				    $('#password-containers ul').droppable('enable');
+					// highlightClass = "password-container-highlight";
+
+				    // If the droppable element we're hovered over already contains a .draggable element, 
+				    // don't allow another one to be dropped on it
+				    if($(this).hasClass('dropped')) {
+				    	// highlightClass = "password-container-disabled"
+				        $(this).droppable('disable');
+				    }
+		    	},
+		    	out: function(event, ui){
+		            $(this).removeClass("dropped");
+		    		// console.log("hello")
+		    	},
+		        accept: ".password",
+		        hoverClass: highlightClass,
+		        tolerance: "pointer",
+		        drop: function(event, ui) {
+		        	// alert()
+		            $(this).addClass("dropped");
+		            $(ui.draggable).appendTo(this);
+				    	// highlightClass = "password-container-disabled"
+
+		            counter++
+
+		            if (counter == passwordsFromServer.length) {
+		            	$('#next').show();
+		            }
+
+		            insertPassword($(this).text(), index)
+
+		            // console.log($('#passwords ul').html())
+
+		            // console.log($('#password-containers ul').text())
+		        }
+		    });
+	});
+
+	$('#passwords').each(function() {
+	    $(this).droppable({
+	        accept: ".password",
+	        tolerance: "pointer",
+	        drop: function(event, ui) {
+	        	// alert()
+	            // $(this).addClass("cell-dropped");
+
+	            counter--;
+
+	            removePassword($(ui.draggable).text())
+	            $(ui.draggable).appendTo('#passwords ul');
+	        }
+	    });
+	});
+
+	$('#passwords ul li').each(function() {
+	    $(this).draggable({
+	        opacity: 0.7,
+	        helper: 'clone',
+	        //appendTo: '#container',
+	        //helper: 'original',
+	        scroll: true
+	    });
+	});
+
+	function insertPassword(password, index){
+		passwordsFromServer.forEach( function(item) {
+			if (password == item.password){
+				userPasswords.push({
+					password: password,
+					realScore: parseInt(item.score),
+					userScore: index
+				})
+			}
+		})
+
+		if (dev) {
+			console.log("USERPASSWORDS:")
+			console.log(userPasswords)
+		}
+	}
+
+	function removePassword(password){
+		userPasswords = _.reject(userPasswords, function(el) { return el.password === password; })
+
+		if (dev) {
+			console.log("USERPASSWORDS:")
+			console.log(userPasswords)
+		}
+	}
+
+	$('#next').click(function(){
+		updatePasswords(userPasswords, function(){
+			window.location.pathname = "/";
+		})
+	})
+}
+
+
+
 
 
 
@@ -219,7 +357,7 @@ function createAccount() {
     });
 }
 
-function updatePersonality(personalities) {
+function updatePersonality(personalities, windowRelocation) {
 	$.ajax({
       url: "/personality",
       type: "POST",
@@ -227,6 +365,29 @@ function updatePersonality(personalities) {
       data: personalities
     }).done(function(data) {
       // alert(data);
+      windowRelocation();
+      console.log(data)
+
+    }).fail(function(error) {
+      // alert(error);
+      console.log(error)
+
+    });
+}
+
+function updatePasswords(passwords, windowRelocation) {
+	if(dev) console.log(passwords)
+	// alert()
+	$.ajax({
+      url: "/password-ranking-test",
+      type: "POST",
+      dataType: "json",
+      data: {
+      	passwords: JSON.stringify(passwords)
+      }
+    }).done(function(data) {
+      // alert(data);
+      windowRelocation();
       console.log(data)
 
     }).fail(function(error) {

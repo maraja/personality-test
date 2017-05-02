@@ -16,7 +16,11 @@ body{
 
 tr:nth-child(even) {background-color: #f2f2f2}
 
-#content {
+.main-container {
+    height: 100vh;
+}
+
+#personality-test-content {
     display: flex;
     height: 100%;
     width: 100%;
@@ -24,9 +28,18 @@ tr:nth-child(even) {background-color: #f2f2f2}
     justify-content: center;
 }
 
-#results {
-    height: 100%;
+#password-test-content {
+    display: flex;
+    height: 80%;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#results {
+    /*height: 100%;*/
+    width: 100%;
+    text-align: center;
     align-items: center;
     justify-content: center;                
 }
@@ -67,3 +80,73 @@ tr:nth-child(even) {background-color: #f2f2f2}
 #question {
     z-index: 999;
 }
+
+.no-text-cursor {
+    cursor: default;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}
+
+#passwords {
+    height: 500px;
+    width: 200px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+#passwords ul {
+    padding: 0;
+}
+#passwords ul li,
+.password {
+    list-style-type: none;
+    font-size: 15px;
+    padding: 15px;
+    background: #eee;
+    margin: 10px;
+}
+
+#password-containers ul {
+    list-style-type: none;
+    border: 1px solid #eee;
+    height: 75px;
+    width: 200px;
+    margin: 10px;
+    padding: 0;
+}
+
+.password-container-highlight {
+    background: #54ff40;
+}
+.password-container-disabled {
+    background: red;
+}
+.password-drag {
+    opacity: 0.7;
+}
+
+#button-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/*#sortable1, #sortable2 {
+    border: 1px solid #eee;
+    width: 142px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+}
+#sortable1 li, #sortable2 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 120px;
+}*/

@@ -1,10 +1,10 @@
 extends layout
 
 block content
-	.container
-		#content
+	.container.main-container
+		#personality-test-content
 			#question
-		#results
+		#results(style="display:none;")
 		.button-row
 			div
-				a#btnClick(title='Start Pilot')
+				a#btnClick(title=title)
