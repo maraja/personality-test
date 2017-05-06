@@ -16,7 +16,8 @@ show users
 
 
 
-mongodump /username:"admin" /password:"P3rs0nal1tYT35T!" /out:"C:\Users\AmitMaraj\Google Drive\SCHOOL\Masters\Experiment\Pilot\server\data\backup"
+mongodump /username:"username" /password:"password" /out:"directorypath"
+mongo --port 27017 -u "myTester" -p "xyz123" --authenticationDatabase "test"
 
 
 ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/

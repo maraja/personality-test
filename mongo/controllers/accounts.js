@@ -102,6 +102,38 @@ module.exports = {
 				}
 			})
 		})
+	},
+
+
+	insertBankPassword: (userId, password) => {
+
+		console.log(password)
+		// password = JSON.parse(password)
+
+		return new Promise((resolve, reject) => {
+
+			// validate the personalities object
+
+			accountModel.findOneAndUpdate(
+				{ _id: userId }, 
+				{
+					'bank-password': {
+						'leak': password['password[leak]'],
+						'score': parseInt(password['password[score]']),
+						'password': password['password[password]'],
+						'_id': password['password[_id]']
+					}
+				},
+				{ new: true, upsert: true },
+				(err, result) => {
+				if (err) {
+					return reject(err);
+				} else {
+					return resolve(result);
+				}
+			})
+		})
 	}
+
 
 }

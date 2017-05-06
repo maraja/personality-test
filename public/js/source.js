@@ -1,8 +1,9 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = false;
+var dev = true;
 var userAnswers;
+var err = {};
 
 //Initialization
 $(document).ready(function() {
@@ -10,20 +11,25 @@ $(document).ready(function() {
   page = (page == '') ? window.location.pathname : page;
   var popup;
 
-  createAccount();
   init();
+  if (dev) createAccount();
 
   switch(page) {
     case "/":
+  		createAccount();
     	personalityTest();
-      break;
+		break;
     case "/password-ranking-test":
-    	passwordTest();
+    	passwordRankingTest();
     	break;
-    case "/personality-test":
-      break;
+    case "/password-bank-selection-test":
+    	passwordBankSelectionTest();
+    	break;
+    case "/password-email-selection-test":
+    	passwordEmailSelectionTest();
+		break;
     default:
-      break;
+		break;
   }
 });
 
@@ -74,11 +80,11 @@ function init() {
 function personalityTest() {
 
 	// for testing
-	if (dev) {
-		setTimeout(function(){
-			updatePersonality({"Extraversion":60,"Agreeableness":60,"Conscientiousness":60,"Neuroticism":60,"Intellect/Imagination":80});
-		}, 3000)
-	}
+	// if (dev) {
+	// 	setTimeout(function(){
+	// 		updatePersonality({"Extraversion":60,"Agreeableness":60,"Conscientiousness":60,"Neuroticism":60,"Intellect/Imagination":80});
+	// 	}, 3000)
+	// }
 
 	var currentQuestion = 0;
 	$('#btnClick').click(function(){
@@ -206,16 +212,14 @@ function personalityTest() {
 
 		}
 
-		updatePersonality(personalities, function(){
-			window.location.pathname = "password-ranking-test";
-		})
+		updatePersonality(personalities, "password-ranking-test");
 	}
 
 }
 
 
 
-function passwordTest(){
+function passwordRankingTest(){
 
 	// passwords given from the server are stored here
 	if (dev) console.log(passwordsFromServer)
@@ -223,74 +227,79 @@ function passwordTest(){
 	var counter = 0
 	var userPasswords = []
 	
+
+	// start the test once user clicks continue
 	$('#btnClick').click(function(){
-		$(this).hide();
+		$(".button-row").hide();
 		$('#password-test-content').show();
 	});
 
 
 	// JQUERY UI
 
-	$('#password-containers ul').each(function(index) {
+	$('.password-container').each(function(index) {
 			var highlightClass = "password-container-highlight";
-		    $(this).droppable({
-		    	over: function(event, ui){
-		    		// Enable all the .droppable elements
-				    $('#password-containers ul').droppable('enable');
-					// highlightClass = "password-container-highlight";
 
-				    // If the droppable element we're hovered over already contains a .draggable element, 
-				    // don't allow another one to be dropped on it
-				    if($(this).hasClass('dropped')) {
-				    	// highlightClass = "password-container-disabled"
-				        $(this).droppable('disable');
-				    }
-		    	},
-		    	out: function(event, ui){
-		            $(this).removeClass("dropped");
-		    		// console.log("hello")
-		    	},
+		    $(this).droppable({
 		        accept: ".password",
 		        hoverClass: highlightClass,
 		        tolerance: "pointer",
 		        drop: function(event, ui) {
-		        	// alert()
-		            $(this).addClass("dropped");
-		            $(ui.draggable).appendTo(this);
-				    	// highlightClass = "password-container-disabled"
 
-		            counter++
+		        	// only allow containers which are empty to be droppable
+		        	if ($(this).html() == "") {
 
-		            if (counter == passwordsFromServer.length) {
-		            	$('#next').show();
-		            }
+		        		// add dropped class and put password into container
+			            $(this).addClass("dropped");
+			            $(ui.draggable).appendTo(this);
 
-		            insertPassword($(this).text(), index)
+			            // search for this password in userPasswords array already
+			            var found = false;
+			            _.map(userPasswords, function(password){
+			            	if (password.password == $(ui.draggable).text()) {
+			            		found = true;
+			            	}
+			            })
 
-		            // console.log($('#passwords ul').html())
+
+			            // remove previous ranking of the password using helper function below
+			            if (found) removePassword($(this).text())
+					    // else increment password counter for showing next button
+			            else counter++
+
+
+			            // show next button if all fields are filled
+			            if (counter == passwordsFromServer.length) {
+			            	$('#next').show();
+			            }
+
+			            // insert password into ranked array
+			            insertPassword($(this).text(), index)
+
+		    		} 
+
+		            // console.log($('#passwords-ranking ul').html())
 
 		            // console.log($('#password-containers ul').text())
 		        }
 		    });
 	});
 
-	$('#passwords').each(function() {
+	$('#passwords-ranking').each(function() {
 	    $(this).droppable({
 	        accept: ".password",
 	        tolerance: "pointer",
 	        drop: function(event, ui) {
-	        	// alert()
-	            // $(this).addClass("cell-dropped");
 
 	            counter--;
 
 	            removePassword($(ui.draggable).text())
-	            $(ui.draggable).appendTo('#passwords ul');
+	            $(ui.draggable).appendTo('#password-list');
 	        }
 	    });
 	});
 
-	$('#passwords ul li').each(function() {
+	$('.password').each(function() {
 	    $(this).draggable({
 	        opacity: 0.7,
 	        helper: 'clone',
@@ -327,12 +336,85 @@ function passwordTest(){
 	}
 
 	$('#next').click(function(){
-		updatePasswords(userPasswords, function(){
-			window.location.pathname = "/";
-		})
+		if(userPasswords.length == passwordsFromServer.length){
+			updatePasswordsFromRanking(userPasswords, "password-bank-selection-test");
+		} else {
+			swal(
+				'Uh Oh!',
+				'All passwords not ranked. Please rank them all and continue.',
+				'error'
+			)
+		}
 	})
 }
 
+
+
+function passwordBankSelectionTest(){
+
+	// passwords given from the server are stored here
+	if (dev) console.log(passwordsFromServer)
+
+	// passwordsFromServer = JSON.parse(passwordsFromServer)
+	var originalPasswords = $('#password-list').text()
+	// console.log(originalPasswords);
+	var displayPasswords = []
+	var chosenPassword;
+	
+	$('#btnClick').click(function(){
+		$(".button-row").hide();
+		$('#password-test-content').show();
+	});
+
+	$('.password').each(function(){
+
+		displayPasswords.push($(this))
+
+		var self = this
+		$(this).mousedown(function(){
+
+			// remove selected class from every other password
+			displayPasswords.forEach(function(password){
+				if (password != self){
+					password.removeClass('password-selected')
+				}
+			})
+
+		    
+		    $('#next').show();
+			chosenPassword = $(this)
+			// console.log(chosenPassword.text())
+			$(this).toggleClass('password-selected')
+
+		})
+	})
+
+	$('#next').click(function(){
+
+		if (originalPasswords == $('#password-list').text()) {
+			// unmodified HTML, continue
+			let passwordObj = {}
+			passwordsFromServer.forEach(function(pass){
+				if (pass.password == chosenPassword.text()){
+					passwordObj = pass;
+				}
+			})
+			console.log(passwordObj)
+			console.log(chosenPassword.text());
+			updatePasswordFromBankSelection(passwordObj, "password-email-selection-test")
+		} else {
+			// HTML tampered with, display alert.
+			swal(
+				'Uh Oh!',
+				'HTML changed, please revert or refresh page to continue.',
+				'error'
+			)
+		}
+		// updatePasswords(userPasswords, function(){
+		// 	window.location.pathname = "/password-selection-test";
+		// })
+	})
+}
 
 
 
@@ -348,16 +430,15 @@ function createAccount() {
       dataType: "json"
     }).done(function(data) {
       // alert(data);
-      // console.log(data)
+      console.log(data)
 
     }).fail(function(error) {
-      alert(error);
       console.log(error)
 
     });
 }
 
-function updatePersonality(personalities, windowRelocation) {
+function updatePersonality(personalities, nextPath) {
 	$.ajax({
       url: "/personality",
       type: "POST",
@@ -365,17 +446,19 @@ function updatePersonality(personalities, windowRelocation) {
       data: personalities
     }).done(function(data) {
       // alert(data);
-      windowRelocation();
+      window.location.pathname = nextPath;
       console.log(data)
 
     }).fail(function(error) {
       // alert(error);
+      window.location.pathname = "error";
+      err = error;
       console.log(error)
 
     });
 }
 
-function updatePasswords(passwords, windowRelocation) {
+function updatePasswordsFromRanking(passwords, nextPath) {
 	if(dev) console.log(passwords)
 	// alert()
 	$.ajax({
@@ -387,11 +470,37 @@ function updatePasswords(passwords, windowRelocation) {
       }
     }).done(function(data) {
       // alert(data);
-      windowRelocation();
+      window.location.pathname = nextPath;
       console.log(data)
 
     }).fail(function(error) {
       // alert(error);
+      window.location.pathname = "error";
+      err = error;
+      console.log(error)
+
+    });
+}
+
+function updatePasswordFromBankSelection(password, nextPath){
+	if(dev) console.log(password)
+	// alert()
+	$.ajax({
+      url: "/password-bank-selection-test",
+      type: "POST",
+      dataType: "json",
+      data: {
+      	password: password
+      }
+    }).done(function(data) {
+      // alert(data);
+      window.location.pathname = nextPath;
+      console.log(data)
+
+    }).fail(function(error) {
+      // alert(error);
+      window.location.pathname = "error";
+      err = error;
       console.log(error)
 
     });

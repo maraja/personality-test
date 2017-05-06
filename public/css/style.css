@@ -72,7 +72,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
 }
 
 .answerRow > div:hover {
-    border-color: green;
+    border-color: #00ff00;
     /* http://tobiasahlin.com/blog/how-to-animate-box-shadow/ <--- read this for performance increase */
     /*box-shadow: 0px 0px 0px #555;*/
 }
@@ -89,33 +89,40 @@ tr:nth-child(even) {background-color: #f2f2f2}
     user-select: none;
 }
 
-#passwords {
+#passwords-ranking {
     height: 500px;
     width: 200px;
     display:flex;
     align-items: center;
     justify-content: center;
 }
-#passwords ul {
+#passwords-ranking .password-list {
     padding: 0;
 }
-#passwords ul li,
 .password {
     list-style-type: none;
     font-size: 15px;
     padding: 15px;
     background: #eee;
     margin: 10px;
+    border: solid 6px transparent;
+    transition: border 0.3s ease-in-out;
 }
 
-#password-containers ul {
-    list-style-type: none;
-    border: 1px solid #eee;
+.password:hover {
+    border-color: #00ff00;
+}
+
+#password-containers .password-container,
+#strength-containers .strength-container {
     height: 75px;
     width: 200px;
     margin: 10px;
     padding: 0;
 }
+
+#strength-containers .strength-container { border: 0px solid #eee; display: flex; align-items: center;}
+#password-containers .password-container { border: 1px solid #eee; }
 
 .password-container-highlight {
     background: #54ff40;
@@ -132,6 +139,20 @@ tr:nth-child(even) {background-color: #f2f2f2}
     display:flex;
     justify-content:center;
     align-items:center;
+}
+
+.password-selected {
+    border: solid 6px #00ff00;
+}
+
+#password-selection-test {
+    display: block;
+}
+
+#passwords-selection {    
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 /*#sortable1, #sortable2 {

@@ -18,7 +18,13 @@ module.exports = function() {
       password: {type: String, default: "" },
       realScore: {type: Number, default: -1},
       userScore: {type: Number, default: -1}
-    }]
+    }],
+    'bank-password': {
+      score: {type: Number},
+      leak: {type: String},
+      password: {type: String},
+      _id: {type: ObjectId}
+    }
   }, {strict:true, collection: 'accounts' });
 
   // Export
