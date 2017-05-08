@@ -24,6 +24,12 @@ module.exports = function() {
       leak: {type: String},
       password: {type: String},
       _id: {type: ObjectId}
+    },
+    'email-password': {
+      score: {type: Number},
+      leak: {type: String},
+      password: {type: String},
+      _id: {type: ObjectId}
     }
   }, {strict:true, collection: 'accounts' });
 

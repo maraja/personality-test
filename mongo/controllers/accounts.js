@@ -105,7 +105,7 @@ module.exports = {
 	},
 
 
-	insertBankPassword: (userId, password) => {
+	insertTestPassword: (userId, password, fieldName) => {
 
 		console.log(password)
 		// password = JSON.parse(password)
@@ -117,7 +117,7 @@ module.exports = {
 			accountModel.findOneAndUpdate(
 				{ _id: userId }, 
 				{
-					'bank-password': {
+					[fieldName] : {
 						'leak': password['password[leak]'],
 						'score': parseInt(password['password[score]']),
 						'password': password['password[password]'],

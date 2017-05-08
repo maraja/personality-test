@@ -2,20 +2,25 @@ var express = require('express');
 var router = express.Router();
 
 var accounts = require('../mongo/controllers/accounts')
-let zxcvbnPasswords = require('../mongo/controllers/zxcvbnPasswords');
+let allPasswords = require('../mongo/controllers/allPasswords');
 let tracker = require('../helpers/tracker');
 
 // let dev = true;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Start Pilot' });
+router.get('/', [tracker.trackProgress], function(req, res, next) {
+	res.render('index', { title: 'Start Pilot' });
 });
 
 router.get('/error', function(req, res, next) {
 	console.log(req.session.error)
-  res.render('error', { title: 'Something went wrong.', error: req.session.error });
+	res.render('error', { title: 'Something went wrong.', error: req.session.error });
 });
+
+router.get('/complete', [tracker.trackProgress], function(req, res, next) {
+	res.render('complete', { title: 'Finished' });
+});
+
 
 router.post('/personality', function(req, res, next) {
 
@@ -45,6 +50,8 @@ router.post('/account', function(req, res, next) {
 			req.session.passwordRankingTestComplete = false;
 			req.session.passwordSelectionBankTestComplete = false;
 			req.session.passwordSelectionEmailTestComplete = false;
+			req.session.passwordSelectionBankTest2Complete = false;
+			req.session.passwordSelectionEmailTest2Complete = false;
 
 			console.log("SESSION:")
 			console.log(req.session)
@@ -67,7 +74,7 @@ router.post('/account', function(req, res, next) {
 router.get('/password-ranking-test', [tracker.trackProgress], function(req, res, next) {
 
 
-	zxcvbnPasswords.getPasswords()
+	allPasswords.getPasswords()
 	.then(passwords => {
 		// testing
 		// console.log("Password: " + passwords[0].password)
@@ -103,7 +110,7 @@ router.post('/password-ranking-test', [tracker.trackProgress], function(req, res
 
 router.get('/password-bank-selection-test', [tracker.trackProgress], function(req, res, next) {
 
-	zxcvbnPasswords.getPasswords()
+	allPasswords.getPasswords()
 	.then(passwords => {
 		res.status(200).render('password-bank-selection-test', { title: 'Continue Pilot', passwords: passwords });
 	}).catch(error => {
@@ -120,7 +127,7 @@ router.post('/password-bank-selection-test', [tracker.trackProgress], function(r
 
 	// console.log("BODY")
 	// console.log(req.body)
-	accounts.insertBankPassword(req.session.accountId, req.body)
+	accounts.insertTestPassword(req.session.accountId, req.body, 'bank-password')
 	.then(result => {
 
 		req.session.passwordSelectionBankTestComplete = true;
@@ -139,9 +146,9 @@ router.post('/password-bank-selection-test', [tracker.trackProgress], function(r
 
 router.get('/password-email-selection-test', [tracker.trackProgress], function(req, res, next) {
 
-	zxcvbnPasswords.getPasswords()
+	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-bank-selection-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-email-selection-test', { title: 'Continue Pilot', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
@@ -149,6 +156,66 @@ router.get('/password-email-selection-test', [tracker.trackProgress], function(r
 
 	})
 
+});
+
+
+router.post('/password-email-selection-test', [tracker.trackProgress], function(req, res, next) {
+
+	// console.log("BODY")
+	// console.log(req.body)
+	accounts.insertTestPassword(req.session.accountId, req.body, 'email-password')
+	.then(result => {
+
+		req.session.passwordSelectionEmailTestComplete = true;
+		res.status(200).json({result: result})
+
+	}).catch(error => {
+
+		console.log("ERROR")
+		console.log(error)
+		req.session.passwordSelectionEmailTestComplete = false;
+		req.session.error = error;
+		res.status(500).json({name: error.name, message: error.message})
+
+	})
+});
+
+
+
+router.get('/password-bank-selection-test-2', [tracker.trackProgress], function(req, res, next) {
+
+	allPasswords.getPasswords()
+	.then(passwords => {
+		res.status(200).render('password-bank-selection-test-2', { title: 'Continue Pilot', passwords: passwords });
+	}).catch(error => {
+
+		req.session.error = error;
+		res.status(500).redirect('/error')
+
+	})
+
+});
+
+
+router.post('/password-bank-selection-test-2', [tracker.trackProgress], function(req, res, next) {
+
+	// console.log("BODY")
+	// console.log(req.body)
+	accounts.insertTestPassword(req.session.accountId, req.body, 'bank-password-2')
+	.then(result => {
+
+		req.session.passwordSelectionBankTest2Complete = true;
+		res.status(200).json({result: result})
+
+	}).catch(error => {
+
+		console.log("ERROR")
+		console.log(error)
+		req.session.passwordSelectionBankTest2Complete = false;
+		req.session.error = error;
+		res.status(500).json({name: error.name, message: error.message})
+
+	})
 });
 
 

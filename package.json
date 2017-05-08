@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start-mongo": "md data & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --auth --dbpath data"
+    "start-mongo-windows": "md data & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --auth --dbpath data",
+    "start-mongo-linux": "mkdir data & mongod --auth --dbpath data"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

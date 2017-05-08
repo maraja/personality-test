@@ -418,6 +418,76 @@ function passwordBankSelectionTest(){
 
 
 
+function passwordEmailSelectionTest(){
+
+	// passwords given from the server are stored here
+	if (dev) console.log(passwordsFromServer)
+
+	// passwordsFromServer = JSON.parse(passwordsFromServer)
+	var originalPasswords = $('#password-list').text()
+	// console.log(originalPasswords);
+	var displayPasswords = []
+	var chosenPassword;
+	
+	$('#btnClick').click(function(){
+		$(".button-row").hide();
+		$('#password-test-content').show();
+	});
+
+	$('.password').each(function(){
+
+		displayPasswords.push($(this))
+
+		var self = this
+		$(this).mousedown(function(){
+
+			// remove selected class from every other password
+			displayPasswords.forEach(function(password){
+				if (password != self){
+					password.removeClass('password-selected')
+				}
+			})
+
+		    
+		    $('#next').show();
+			chosenPassword = $(this)
+			// console.log(chosenPassword.text())
+			$(this).toggleClass('password-selected')
+
+		})
+	})
+
+	$('#next').click(function(){
+
+		if (originalPasswords == $('#password-list').text()) {
+			// unmodified HTML, continue
+			let passwordObj = {}
+			passwordsFromServer.forEach(function(pass){
+				if (pass.password == chosenPassword.text()){
+					passwordObj = pass;
+				}
+			})
+			console.log(passwordObj)
+			console.log(chosenPassword.text());
+			// submit and route to next test
+			updatePasswordFromEmailSelection(passwordObj, "complete")
+		} else {
+			// HTML tampered with, display alert.
+			swal(
+				'Uh Oh!',
+				'HTML changed, please revert or refresh page to continue.',
+				'error'
+			)
+		}
+		// updatePasswords(userPasswords, function(){
+		// 	window.location.pathname = "/password-selection-test";
+		// })
+	})
+}
+
+
+
+
 
 
 
@@ -430,10 +500,10 @@ function createAccount() {
       dataType: "json"
     }).done(function(data) {
       // alert(data);
-      console.log(data)
+      if (dev) console.log(data)
 
     }).fail(function(error) {
-      console.log(error)
+      if (dev) console.log(error)
 
     });
 }
@@ -447,13 +517,13 @@ function updatePersonality(personalities, nextPath) {
     }).done(function(data) {
       // alert(data);
       window.location.pathname = nextPath;
-      console.log(data)
+      if (dev) console.log(data)
 
     }).fail(function(error) {
       // alert(error);
       window.location.pathname = "error";
       err = error;
-      console.log(error)
+      if (dev) console.log(error)
 
     });
 }
@@ -471,13 +541,13 @@ function updatePasswordsFromRanking(passwords, nextPath) {
     }).done(function(data) {
       // alert(data);
       window.location.pathname = nextPath;
-      console.log(data)
+      if (dev) console.log(data)
 
     }).fail(function(error) {
       // alert(error);
       window.location.pathname = "error";
       err = error;
-      console.log(error)
+      if (dev) console.log(error)
 
     });
 }
@@ -495,13 +565,38 @@ function updatePasswordFromBankSelection(password, nextPath){
     }).done(function(data) {
       // alert(data);
       window.location.pathname = nextPath;
-      console.log(data)
+      if (dev) console.log(data)
 
     }).fail(function(error) {
       // alert(error);
       window.location.pathname = "error";
       err = error;
-      console.log(error)
+      if (dev) console.log(error)
+
+    });
+}
+
+
+function updatePasswordFromEmailSelection(password, nextPath){
+	if(dev) console.log(password)
+	// alert()
+	$.ajax({
+      url: "/password-email-selection-test",
+      type: "POST",
+      dataType: "json",
+      data: {
+      	password: password
+      }
+    }).done(function(data) {
+      // alert(data);
+      window.location.pathname = nextPath;
+      if (dev) console.log(data)
+
+    }).fail(function(error) {
+      // alert(error);
+      window.location.pathname = "error";
+      err = error;
+      if (dev) console.log(error)
 
     });
 }
