@@ -1,6 +1,9 @@
 // IMPORT PASSWORDS - ZXCVBN
 // UNCOMMENT the following for the insertion of zxcvbn passwords
 
+var mongoDb = require('./mongo/helpers/mongodb');
+mongoDb.dbConnection('production');
+
 // let linkedinPasswords = require('./mongo/controllers/linkedinPasswords');
 let passwordConverter = require('./helpers/passwordConverter');
 

@@ -38,7 +38,7 @@ app.use('/', index);
 app.use('/users', users);
 
 var mongoDb = require('./mongo/helpers/mongodb');
-mongoDb.dbConnection();
+mongoDb.dbConnection(process.env.NODE_ENV || 'development');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

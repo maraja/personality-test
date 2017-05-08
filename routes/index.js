@@ -58,6 +58,8 @@ router.post('/account', function(req, res, next) {
 			res.status(200).json({ result: result })
 		}).catch(error => {
 			// cannot continue as no account is created
+			console.log("ERR")
+			console.log(error)
 			req.session.error = error;
 			res.status(500).json({name: error.name, message: error.message})
 		})
