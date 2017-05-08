@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session handling
-app.use(session({ secret: config.session_secret, cookie: {1800 * 1000} })) // session lasts for half hour
+app.use(session({ secret: config.session_secret, cookie: {maxAge: 1800 * 1000} })) // session lasts for half hour
 // app.use(session({ secret: config.session_secret, cookie: {3600 * 1000} })) // session lasts for an hour
 
 app.use('/', index);
