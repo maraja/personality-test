@@ -77,6 +77,11 @@ function init() {
 		}
 	];
 
+	$(window).resize(function() {
+        var bodyheight = $(this).height();
+        $("#test-container").height(bodyheight);
+    }).resize();
+
 }
 
 
