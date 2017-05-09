@@ -1,7 +1,7 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = false;
+var dev = true;
 var userAnswers;
 var err = {};
 
@@ -28,6 +28,9 @@ $(document).ready(function() {
     case "/password-email-selection-test":
     	passwordEmailSelectionTest();
 		break;
+    case "/password-bank-selection-test-2":
+    	passwordBankSelectionTest2();
+    	break;
     default:
 		break;
   }
@@ -148,7 +151,7 @@ function personalityTest() {
 			$('#question').append($answerRow)
 
 		} else {
-			endPersonalityTest(true)
+			endPersonalityTest()
 		}
 	}
 
@@ -205,6 +208,7 @@ function personalityTest() {
 				personalities[userAnswers[i].name] = (userAnswers[i].percent*100);
 
 				if (displayUserResults !== undefined && displayUserResults == true){
+
 					$('#results').append($('<h2>', {
 						text: userAnswers[i].name + ": " + (userAnswers[i].percent*100) + "%"
 					}))
@@ -355,7 +359,7 @@ function passwordBankSelectionTest(){
 	// passwords given from the server are stored here
 	if (dev) console.log(passwordsFromServer)
 
-	// passwordsFromServer = JSON.parse(passwordsFromServer)
+	// passwordsFromserver = JSON.parse(passwordsFromServer)
 	var originalPasswords = $('#password-list').text()
 	// console.log(originalPasswords);
 	var displayPasswords = []
@@ -393,7 +397,7 @@ function passwordBankSelectionTest(){
 
 		if (originalPasswords == $('#password-list').text()) {
 			// unmodified HTML, continue
-			let passwordObj = {}
+			var passwordObj = {}
 			passwordsFromServer.forEach(function(pass){
 				if (pass.password == chosenPassword.text()){
 					passwordObj = pass;
@@ -423,7 +427,7 @@ function passwordEmailSelectionTest(){
 	// passwords given from the server are stored here
 	if (dev) console.log(passwordsFromServer)
 
-	// passwordsFromServer = JSON.parse(passwordsFromServer)
+	// passwordsFromserver = JSON.parse(passwordsFromServer)
 	var originalPasswords = $('#password-list').text()
 	// console.log(originalPasswords);
 	var displayPasswords = []
@@ -461,7 +465,7 @@ function passwordEmailSelectionTest(){
 
 		if (originalPasswords == $('#password-list').text()) {
 			// unmodified HTML, continue
-			let passwordObj = {}
+			var passwordObj = {}
 			passwordsFromServer.forEach(function(pass){
 				if (pass.password == chosenPassword.text()){
 					passwordObj = pass;
@@ -470,7 +474,7 @@ function passwordEmailSelectionTest(){
 			console.log(passwordObj)
 			console.log(chosenPassword.text());
 			// submit and route to next test
-			updatePasswordFromEmailSelection(passwordObj, "complete")
+			updatePasswordFromEmailSelection(passwordObj, "password-bank-selection-test-2")
 		} else {
 			// HTML tampered with, display alert.
 			swal(
@@ -479,9 +483,141 @@ function passwordEmailSelectionTest(){
 				'error'
 			)
 		}
-		// updatePasswords(userPasswords, function(){
-		// 	window.location.pathname = "/password-selection-test";
-		// })
+	})
+}
+
+
+function passwordBankSelectionTest2(){
+
+	// passwords given from the server are stored here
+	if (dev) console.log(passwordsFromServer)
+
+	// passwordsFromserver = JSON.parse(passwordsFromServer)
+	var originalPasswords = $('#password-list').text()
+	// console.log(originalPasswords);
+	var displayPasswords = []
+	var chosenPassword = $(), typedPassword = "";
+	
+	$('#btnClick').click(function(){
+		$(".button-row").hide();
+		$('#password-test-content').show();
+	});
+
+	$('.password-input').focus(function(){
+
+	    $('#next').show();
+	})
+
+	$('.password-input').blur(function(){
+		
+		if ($('.password-input').val() != ""){
+			chosenPassword = $();
+		    typedPassword = $('.password-input').val()
+		}
+	})
+
+	$('.password').each(function(){
+
+		displayPasswords.push($(this))
+
+		var self = this
+		$(this).mousedown(function(){
+
+			typedPassword = "";
+
+			// remove selected class from every other password
+			displayPasswords.forEach(function(password){
+				if (password != self){
+					password.removeClass('password-selected')
+				}
+			})
+
+		    
+		    $('#next').show();
+			chosenPassword = $(this)
+			// console.log(chosenPassword.text())
+			$(this).toggleClass('password-selected')
+
+		})
+	})
+
+	$('#next').click(function(){
+
+		if (dev) {
+			console.log("chosen password: " + chosenPassword.text())
+			console.log("typed password: " + typedPassword)
+		}
+
+		if (originalPasswords == $('#password-list').text()) {
+
+			if (chosenPassword.text() !== "" && typedPassword !== ""){
+				swal(
+					'Uh Oh!',
+					'Both options selected, please refresh your page and choose one option to continue.',
+					'error'
+				)
+			} else if (chosenPassword.text() === "" && typedPassword === "") {
+				swal(
+					'Uh Oh!',
+					'Activity incomplete, please finish the activity before continuing.',
+					'error'
+				)
+			} else {
+
+				var passwordObj = {}
+				
+				if (chosenPassword.text() !== "") {
+
+					passwordsFromServer.forEach(function(pass){
+						if (pass.password == chosenPassword.text()){
+							passwordObj = pass;
+						}
+					})
+
+					if (dev) {
+						console.log(passwordObj);
+						console.log(chosenPassword.text());
+					}
+
+					updatePasswordFromBankSelection2(passwordObj, "complete")
+
+				} else if (typedPassword !== "") {
+					passwordObj['calc_time'] = "";
+					passwordObj['crack_time_display_fast_hash'] = "";
+					passwordObj['crack_time_display_slow_hash'] = "";
+					passwordObj['crack_time_seconds_fast_hash'] = "";
+					passwordObj['crack_time_seconds_slow_hash'] = "";
+					passwordObj['guesses'] = "";
+					passwordObj['guesses_log10'] = "";
+					passwordObj['leak'] = "";
+					passwordObj['password'] = typedPassword;
+					passwordObj['score'] = -1;
+					// passwordObj['leak'] = "";
+
+					if (dev) {
+						console.log(passwordObj);
+						console.log(typedPassword);
+					}
+
+					updatePasswordFromBankSelection2(passwordObj, "complete")
+				} else {
+					swal(
+						'Uh Oh!',
+						'Something went wrong. Please refresh the page and try again.',
+						'error'
+					)
+				}
+				// submit and route to next test
+				// updatePasswordFromBankSelection2(passwordToSend, "complete")
+			}
+		} else {
+			// HTML tampered with, display alert.
+			swal(
+				'Uh Oh!',
+				'HTML changed, please revert or refresh page to continue.',
+				'error'
+			)
+		}
 	})
 }
 
@@ -516,7 +652,7 @@ function updatePersonality(personalities, nextPath) {
       data: personalities
     }).done(function(data) {
       // alert(data);
-      window.location.pathname = nextPath;
+      continueToNextPage(nextPath);
       if (dev) console.log(data)
 
     }).fail(function(error) {
@@ -540,7 +676,7 @@ function updatePasswordsFromRanking(passwords, nextPath) {
       }
     }).done(function(data) {
       // alert(data);
-      window.location.pathname = nextPath;
+      continueToNextPage(nextPath);
       if (dev) console.log(data)
 
     }).fail(function(error) {
@@ -564,7 +700,7 @@ function updatePasswordFromBankSelection(password, nextPath){
       }
     }).done(function(data) {
       // alert(data);
-      window.location.pathname = nextPath;
+      continueToNextPage(nextPath);
       if (dev) console.log(data)
 
     }).fail(function(error) {
@@ -589,7 +725,7 @@ function updatePasswordFromEmailSelection(password, nextPath){
       }
     }).done(function(data) {
       // alert(data);
-      window.location.pathname = nextPath;
+      continueToNextPage(nextPath);
       if (dev) console.log(data)
 
     }).fail(function(error) {
@@ -599,4 +735,43 @@ function updatePasswordFromEmailSelection(password, nextPath){
       if (dev) console.log(error)
 
     });
+}
+
+function updatePasswordFromBankSelection2(password, nextPath){
+	if(dev) console.log(password)
+	// alert()
+	$.ajax({
+      url: "/password-bank-selection-test-2",
+      type: "POST",
+      dataType: "json",
+      data: {
+      	password: password
+      }
+    }).done(function(data) {
+      // alert(data);
+      continueToNextPage(nextPath);
+      if (dev) console.log(data)
+
+    }).fail(function(error) {
+      // alert(error);
+      window.location.pathname = "error";
+      err = error;
+      if (dev) console.log(error)
+
+    });
+}
+
+
+function continueToNextPage(nextPath){
+	swal({
+	  title: 'Great!',
+	  text: "Thank you for completing this portion of the test.",
+	  type: 'success',
+	  // confirmButtonColor: '#3085d6',
+	  confirmButtonText: 'Continue'
+	}).then(function () {
+		$("#test-container").toggle();
+		$(".loader-container").toggle();
+	  window.location.pathname = nextPath;
+	})
 }

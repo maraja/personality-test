@@ -1,4 +1,4 @@
-let dev = true;
+let dev = (process.env.NODE_ENV=='production'?false:true);
 
 module.exports = { 
 
@@ -28,7 +28,7 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/')
+						res.redirect('/password-bank-selection-test')
 					} else if (req.method == "POST"){
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
@@ -47,7 +47,7 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/')
+						res.redirect('/password-email-selection-test')
 					} else if (req.method == "POST"){
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
@@ -68,7 +68,7 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/')
+						res.redirect('/password-bank-selection-test-2')
 					} else if (req.method == "POST"){
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)

@@ -20,6 +20,13 @@ tr:nth-child(even) {background-color: #f2f2f2}
     height: 100vh;
 }
 
+#test-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #personality-test-content {
     display: flex;
     height: 100%;
@@ -135,10 +142,15 @@ tr:nth-child(even) {background-color: #f2f2f2}
 }
 
 #button-container{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    position: fixed;
+    z-index: 10;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    left: 0;
+    padding-right: 50px;
 }
 
 .password-selected {
@@ -153,21 +165,56 @@ tr:nth-child(even) {background-color: #f2f2f2}
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    align-items: center;
 }
 
-/*#sortable1, #sortable2 {
-    border: 1px solid #eee;
-    width: 142px;
-    min-height: 20px;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0 0 0;
-    float: left;
-    margin-right: 10px;
+#passwords-selection-2 {    
+    /*display: flex;*/
+    justify-content: center;
+    margin-top: 50px;
+    align-items: center;
 }
-#sortable1 li, #sortable2 li {
-    margin: 0 5px 5px 5px;
-    padding: 5px;
-    font-size: 1.2em;
-    width: 120px;
-}*/
+
+#select-password-test-2 {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.password-input {
+    height: 50px;
+    width: 300px;
+    padding: 15px;
+    font-size: 17px;
+    /*margin: 50px;*/
+}
+
+
+/*LOADER*/
+.loader-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

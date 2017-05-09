@@ -17,7 +17,7 @@ show users
 
 
 mongodump /username:"username" /password:"password" /out:"directorypath"
-mongo --port 27017 -u "myTester" -p "xyz123" --authenticationDatabase "test"
+mongo --port 27017 -u "dev" -p "P3rs0nal1tYT35T!" --authenticationDatabase "personality-test"
 
 
 ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
