@@ -1,7 +1,7 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = true;
+var dev = false;
 var userAnswers;
 var err = {};
 
