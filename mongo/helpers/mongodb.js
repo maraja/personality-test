@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 var config = require('../../config');
 
 module.exports = {
-	dbConnection: () => {
+	dbConnection: (connectionType) => {
 		// MONGOOSE MONGODB CONNECTION TEST
 
-		console.log('Using '+config.environment+' database...');
-
-		var db = config.db;
+		console.log('Using '+config.mongo[connectionType].environment+' database...');
+		let db = config.mongo[connectionType].db;
+		
 		var db_connection_string = db.dialect + "://" + 
 			db.username + ":" + 
 			db.password + "@" +

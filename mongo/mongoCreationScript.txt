@@ -1,8 +1,23 @@
+
 use personality-test
 db.users.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
 newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
 db.users.insert(newstuff)
 use admin
 db.createUser({ user: "admin", pwd: "P3rs0nal1tYT35T!", roles: [{role: "userAdminAnyDatabase", db: "admin"}]})
+db.grantRolesToUser("admin", [ { role: "read", db: "admin" } ])
+
+show users
+
+use personality-test
+db.createUser({user: "dev", pwd: "P3rs0nal1tYT35T!",roles: [ { role:"readWrite", db: "personality-test" } ]})
+
+show users
+
+
+
+mongodump /username:"username" /password:"password" /out:"directorypath"
+mongo --port 27017 -u "dev" -p "P3rs0nal1tYT35T!" --authenticationDatabase "personality-test"
+
 
 ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
