@@ -50,8 +50,8 @@ router.post('/account', function(req, res, next) {
 			req.session.passwordRankingTestComplete = false;
 			req.session.passwordSelectionBankTestComplete = false;
 			req.session.passwordSelectionEmailTestComplete = false;
-			req.session.passwordSelectionBankTest2Complete = false;
-			req.session.passwordSelectionEmailTest2Complete = false;
+			req.session.passwordCreationBankTestComplete = false;
+			req.session.passwordCreationEmailTestComplete = false;
 
 			console.log("SESSION:")
 			console.log(req.session)
@@ -184,11 +184,11 @@ router.post('/password-email-selection-test', [tracker.trackProgress], function(
 
 
 
-router.get('/password-bank-selection-test-2', [tracker.trackProgress], function(req, res, next) {
+router.get('/password-bank-creation-test', [tracker.trackProgress], function(req, res, next) {
 
 	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-bank-selection-test-2', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-bank-creation-test', { title: 'Continue Pilot', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
@@ -199,7 +199,7 @@ router.get('/password-bank-selection-test-2', [tracker.trackProgress], function(
 });
 
 
-router.post('/password-bank-selection-test-2', [tracker.trackProgress], function(req, res, next) {
+router.post('/password-bank-creation-test', [tracker.trackProgress], function(req, res, next) {
 
 	// console.log("BODY")
 	// console.log(req.body)

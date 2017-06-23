@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   switch(page) {
     case "/":
-  		createAccount();
+  		createAccount()
     	personalityTest();
 		break;
     case "/password-ranking-test":
@@ -28,8 +28,11 @@ $(document).ready(function() {
     case "/password-email-selection-test":
     	passwordEmailSelectionTest();
 		break;
-    case "/password-bank-selection-test-2":
-    	passwordBankSelectionTest2();
+    case "/password-bank-creation-test":
+    	passwordBankCreationTest();
+    	break;
+    case "/password-email-creation-test":
+    	passwordEmailCreationTest();
     	break;
     default:
 		break;
@@ -226,7 +229,13 @@ function personalityTest() {
 
 }
 
+function awakeQuestions() {
 
+}
+
+
+
+// PASSWORD RANKING
 
 function passwordRankingTest(){
 
@@ -241,6 +250,7 @@ function passwordRankingTest(){
 	$('#btnClick').click(function(){
 		$(".button-row").hide();
 		$('#password-test-content').show();
+		$('#prompt-content').show();
 	});
 
 
@@ -358,6 +368,7 @@ function passwordRankingTest(){
 }
 
 
+// PASSWORD SELECTION
 
 function passwordBankSelectionTest(){
 
@@ -373,6 +384,7 @@ function passwordBankSelectionTest(){
 	$('#btnClick').click(function(){
 		$(".button-row").hide();
 		$('#password-test-content').show();
+		$('#prompt-content').show();
 	});
 
 	$('.password').each(function(){
@@ -410,7 +422,24 @@ function passwordBankSelectionTest(){
 			})
 			console.log(passwordObj)
 			console.log(chosenPassword.text());
-			updatePasswordFromBankSelection(passwordObj, "password-email-selection-test")
+
+			// get the user justification, then move forward
+			swal({
+				"title": "Justification",
+				"text": "Please enter a brief description as to why you chose this password. Password: " + chosenPassword.text(),
+				"input": "textarea"
+			}).then(function(text){
+				console.log(text)
+				if(text === false ) return false;
+				if(text === "" ) {
+					swal.showInputError("You must give a justification before continuing.")
+					return false;
+				} else {
+					passwordObj["justification"] = text;
+					updatePasswordFromBankSelection(passwordObj, "password-email-selection-test")
+				}
+			})
+
 		} else {
 			// HTML tampered with, display alert.
 			swal(
@@ -441,6 +470,7 @@ function passwordEmailSelectionTest(){
 	$('#btnClick').click(function(){
 		$(".button-row").hide();
 		$('#password-test-content').show();
+		$('#prompt-content').show();
 	});
 
 	$('.password').each(function(){
@@ -478,8 +508,26 @@ function passwordEmailSelectionTest(){
 			})
 			console.log(passwordObj)
 			console.log(chosenPassword.text());
-			// submit and route to next test
-			updatePasswordFromEmailSelection(passwordObj, "password-bank-selection-test-2")
+
+
+
+			// get the user justification, then move forward
+			swal({
+				"title": "Justification",
+				"text": "Please enter a brief description as to why you chose this password. Password: " + chosenPassword.text(),
+				"input": "textarea"
+			}).then(function(text){
+				console.log(text)
+				if(text === false ) return false;
+				if(text === "" ) {
+					swal.showInputError("You must give a justification before continuing.")
+					return false;
+				} else {
+					passwordObj["justification"] = text;
+					// submit and route to next test
+					updatePasswordFromEmailSelection(passwordObj, "password-bank-creation-test")
+				}
+			})
 		} else {
 			// HTML tampered with, display alert.
 			swal(
@@ -492,7 +540,7 @@ function passwordEmailSelectionTest(){
 }
 
 
-function passwordBankSelectionTest2(){
+function passwordBankCreationTest(){
 
 	// passwords given from the server are stored here
 	if (dev) console.log(passwordsFromServer)
@@ -506,6 +554,7 @@ function passwordBankSelectionTest2(){
 	$('#btnClick').click(function(){
 		$(".button-row").hide();
 		$('#password-test-content').show();
+		$('#prompt-content').show();
 	});
 
 	$('.password-input').focus(function(){
@@ -746,7 +795,7 @@ function updatePasswordFromBankSelection2(password, nextPath){
 	if(dev) console.log(password)
 	// alert()
 	$.ajax({
-      url: "/password-bank-selection-test-2",
+      url: "/password-bank-creation-test",
       type: "POST",
       dataType: "json",
       data: {
@@ -772,6 +821,7 @@ function continueToNextPage(nextPath){
 	  title: 'Great!',
 	  text: "Thank you for completing this portion of the test.",
 	  type: 'success',
+	  allowOutsideClick: false,
 	  // confirmButtonColor: '#3085d6',
 	  confirmButtonText: 'Continue'
 	}).then(function () {

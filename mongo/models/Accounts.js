@@ -23,18 +23,21 @@ module.exports = function() {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
+      justification: {type: String},
       _id: {type: ObjectId}
     },
     'bank-password-2': {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
+      justification: {type: String},
       _id: {type: ObjectId}
     },
     'email-password': {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
+      justification: {type: String},
       _id: {type: ObjectId}
     }
   }, {strict:true, collection: 'accounts' });

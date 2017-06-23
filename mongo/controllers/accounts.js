@@ -121,6 +121,7 @@ module.exports = {
 						'leak': password['password[leak]'],
 						'score': parseInt(password['password[score]']),
 						'password': password['password[password]'],
+						'justification': password['password[justification]'],
 						'_id': password['password[_id]']
 					}
 				},

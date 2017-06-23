@@ -11,7 +11,7 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/complete')
+						res.redirect('/password-ranking-test')
 					} else if (req.method == "POST"){
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
@@ -77,7 +77,7 @@ module.exports = {
 				break;
 
 
-			case '/password-bank-selection-test-2':
+			case '/password-bank-creation-test':
 				if (dev) req.session.personalityTestComplete = true;
 				if (dev) req.session.passwordRankingTestComplete = true;
 				if (dev) req.session.passwordSelectionBankTestComplete = true;
@@ -87,7 +87,7 @@ module.exports = {
 					&& req.session.passwordRankingTestComplete
 					&& req.session.passwordSelectionBankTestComplete
 					&& req.session.passwordSelectionEmailTestComplete
-					&& !req.session.passwordSelectionBankTest2Complete){
+					&& !req.session.passwordCreationBankTestComplete){
 
 					return next();
 				} else {
