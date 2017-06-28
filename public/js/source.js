@@ -2,7 +2,7 @@ $('#results').hide();
 
 // this flag will send array output to console if set to true
 var dev = false;
-var userAnswers;
+var userAnswers, userAwakeAnswers;
 var err = {};
 
 //Initialization
@@ -80,6 +80,21 @@ function init() {
 		}
 	];
 
+	userAwakeAnswers = [
+		{
+			question: awakeQuestions[0],
+			answer: ""
+		},
+		{
+			question: awakeQuestions[1],
+			answer: ""
+		},
+		{
+			question: awakeQuestions[2],
+			answer: ""
+		}
+	]
+
 	$(window).resize(function() {
         var bodyheight = $(this).height();
         $("#test-container").height(bodyheight);
@@ -146,6 +161,21 @@ function personalityTest() {
 					$( "#question" ).fadeOut( "fast", function() {
 						// Animation complete.
 						$(this).empty();
+						
+						switch(currentQuestion){
+							case 7:
+								createAwakeQuestion(0);
+								break;
+							case 15:
+								createAwakeQuestion(1);
+								break;
+							case 17:
+								createAwakeQuestion(2);
+								break;
+							default:
+								createQuestion();
+								break;
+						}
 						createQuestion();
 						$( "#question" ).fadeIn("fast")
 					});
@@ -201,6 +231,78 @@ function personalityTest() {
 		console.log(keyed)
 		console.log("score: " + score)
 		console.log("percent: " + percent)
+	}
+
+
+
+	function createAwakeQuestion(index){
+		answerBubbles = []
+		var scopeAnswers;
+		switch(index){
+			case 0:
+				scopeAnswers = awakeAnswers_1;
+				break;
+			case 1:
+				scopeAnswers = awakeAnswers_2;
+				break;
+			case 2:
+				scopeAnswers = awakeAnswers_3;
+				break;
+			default:
+				break;
+
+		}
+
+		if (dev) console.log(userAwakeAnswers)
+		$questionRow = $('<h1>', {
+			class: "row questionRow"
+		})
+		$answerRow = $('<div>', {
+			class: "row answerRow"
+		})
+
+		// add question to the DOM
+		$question = $('<div>', {
+			text: awakeQuestions[index]
+		})
+
+
+		for (var i = 0; i < scopeAnswers.length; i++){
+
+			// add answers within bubbles to the DOM
+			answerBubbles.push($('<div>', {
+				text: scopeAnswers[i],
+				id: (index+1)+"-"+(i+1),
+				class: "no-text-cursor"
+			}))
+
+			$answerRow.append(answerBubbles[i]);
+
+			answerBubbles[i].on('mouseup', function(){
+
+				var answerText = $(this).text()
+
+				// userAnswers.push(parseInt(answerNumber))
+				updateAwakeAnswer(index, answerText)
+				$( "#question" ).fadeOut( "fast", function() {
+					// Animation complete.
+					$(this).empty();
+					createQuestion();
+					$( "#question" ).fadeIn("fast")
+				});
+
+			})
+		}
+
+		$questionRow.append($question)
+
+		$('#question').append($questionRow)
+		$('#question').append($answerRow)
+	}
+
+
+	function updateAwakeAnswer(index, answerText){
+		userAwakeAnswers[index].answer = answerText;
 	}
 
 

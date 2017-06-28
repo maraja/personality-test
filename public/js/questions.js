@@ -29,6 +29,7 @@ var answers = [
 	"Very Accurate"
 ]
 
+
 var questionFactors = [ 
 	"E", 
 	"A",
@@ -73,4 +74,37 @@ var questionReverse = [
 	true,
 	true,
 	true
+]
+
+
+
+
+var awakeQuestions = [
+	"I enjoy watching sports",
+	"I enjoy watching the following sport the most",
+	"I do not enjoy watching sports"
+]
+
+var awakeAnswers_1 = [
+	"Very Inaccurate",
+	"Moderately Inaccurate",
+	"Neither Inaccurate nor Accurate",
+	"Moderately Accurate",
+	"Very Accurate"
+]
+
+var awakeAnswers_2 = [
+	"Not Applicable",
+	"Cricket",
+	"Basketball",
+	"Soccer",
+	"Hockey"
+]
+
+var awakeAnswers_3 = [
+	"Very Inaccurate",
+	"Moderately Inaccurate",
+	"Neither Inaccurate nor Accurate",
+	"Moderately Accurate",
+	"Very Accurate"
 ]
