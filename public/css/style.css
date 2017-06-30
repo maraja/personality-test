@@ -20,6 +20,16 @@ tr:nth-child(even) {background-color: #f2f2f2}
     height: 100vh;
 }
 
+
+/*QUESTIONNAIRE*/
+
+#questionnaire {
+
+}
+
+
+/*PERSONALITY TEST*/
+
 #test-container {
     height: 100vh;
     display: flex;

@@ -1,0 +1,166 @@
+extends layout
+
+block content
+	.container.main-container
+		#questionnaire
+			form(action="/questionnaire" method="POST")
+				fieldset.form-group
+					h4 Gender?
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='gender', value='male', checked='')
+							|         Male
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='gender', value='female')
+							|         Female
+
+
+				fieldset.form-group
+					h4 Left or Right Handed?
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='handedness', value='left', checked='')
+							|         Left
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='handedness', value='right')
+							|         Right
+
+
+				fieldset.form-group
+					h4 Age?
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='age', value='-20', checked='')
+							|         Less than 20 years.
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='age', value='20-25')
+							|         20-25 years.
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='age', value='26-30')
+							|         26-30 years.
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='age', value='31-35')
+							|         31-35 years.
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='age', value='36-40')
+							|         36-40 years.
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='age', value='40-')
+							|         More than 40 years.
+
+
+				fieldset
+					h4 Occupation?
+					select#occupation.form-control.dropdown(name='occupation')
+						option(value='', selected='selected', disabled='disabled') -- select one --
+							option(value='Healthcare Practitioners and Technical Occupations') -  Healthcare Practitioners and Technical Occupations
+							option(value='Healthcare Support Occupations') -  Healthcare Support Occupations
+							option(value='Dietitian or Nutritionist') -  Dietitian or Nutritionist
+							option(value='Business, Executive, Management, and Financial Occupations') -  Business, Executive, Management, and Financial Occupations
+							option(value='Architecture and Engineering Occupations') -  Architecture and Engineering Occupations
+							option(value='Security, Military, and Law Enforcement Occupations') -  Security, Military, and Law Enforcement Occupations
+							option(value='Computer Science and IT-related Occupations') -  Computer Science and IT-related Occupations
+							option(value='Education, Training, and Library Occupations') -  Education, Training, and Library Occupations
+							option(value='Trades-based Occupations') -  Trades-based Occupations
+							option(value='Agriculture, Maintenance, Repair, and Skilled Crafts Occupations') -  Agriculture, Maintenance, Repair, and Skilled Crafts Occupations
+							option(value='Transportation Occupations') -  Transportation Occupations
+							option(value='Other Occupations') -  Other Occupations
+
+
+
+				fieldset.form-group
+					h4 Have you ever had any security training in the past? (this includes any type of security. For example, law enforcement, computer, etc...)
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='security_training', value='yes', checked='')
+							|         Yes
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='security_training', value='no')
+							|         No
+
+
+
+				fieldset.form-group
+					h4 Have you ever has any password seucrity awareness training? (e.g. learning the difference between a weaker and stronger password)
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='password_awareness', value='yes', checked='')
+							|         Yes
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='password_awareness', value='no')
+							|         No
+
+
+
+				fieldset.form-group
+					h4 If you answered 'Yes' to the question above, on a scale from 1 (Novice) to 5 (Expert), how would you rank your password security awareness?
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='password_awareness_level', value='1', checked='')
+							|         1 (Novice)
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='password_awareness_level', value='2')
+							|         2
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='password_awareness_level', value='3')
+							|         3
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='password_awareness_level', value='4')
+							|         4
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='password_awareness_level', value='5')
+							|         5 (expert)
+
+
+
+				fieldset.form-group
+					h4 On a scale from 1 (Novice) to 5 (Expert), how would you rank yourself with respect to your computer skills?
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='computer_skills_level', value='1', checked='')
+							|         1 (Novice)
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='computer_skills_level', value='2')
+							|         2
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='computer_skills_level', value='3')
+							|         3
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='computer_skills_level', value='4')
+							|         4
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='computer_skills_level', value='5')
+							|         5 (expert)
+
+				
+				fieldset.form-group
+					h4 Have you ever been involved in an online account hijacking of any sort? (e.g. stolen password, hacked email account, etc...)
+					.form-check
+						label.form-check-label
+							input#optionsRadios1.form-check-input(type='radio', name='account_hijacking_involvement', value='yes', checked='')
+							|         Yes
+					.form-check
+						label.form-check-label
+							input#optionsRadios2.form-check-input(type='radio', name='account_hijacking_involvement', value='no')
+							|         No
+
+				button.btn.btn-primary(type='submit') Submit
+
+			

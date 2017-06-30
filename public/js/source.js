@@ -1,7 +1,7 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = false;
+var dev = true;
 var userAnswers, userAwakeAnswers;
 var err = {};
 
@@ -16,7 +16,13 @@ $(document).ready(function() {
 
   switch(page) {
     case "/":
-  		createAccount()
+  		createAccount();
+  		createQuestionnaire();
+  		break;
+  	case "/questionnaire":
+  		createQuestionnaire();
+  		break;
+  	case "/personality":
     	personalityTest();
 		break;
     case "/password-ranking-test":
@@ -80,6 +86,7 @@ function init() {
 		}
 	];
 
+
 	userAwakeAnswers = [
 		{
 			question: awakeQuestions[0],
@@ -95,12 +102,23 @@ function init() {
 		}
 	]
 
+
 	$(window).resize(function() {
         var bodyheight = $(this).height();
         $("#test-container").height(bodyheight);
     }).resize();
 
 }
+
+
+
+
+function createQuestionnaire() {
+
+}
+
+
+
 
 
 function personalityTest() {
@@ -176,7 +194,7 @@ function personalityTest() {
 								createQuestion();
 								break;
 						}
-						createQuestion();
+						// createQuestion();
 						$( "#question" ).fadeIn("fast")
 					});
 
@@ -309,6 +327,8 @@ function personalityTest() {
 	// change displayUserResults flag if wanted to display results at end of personality test
 	function endPersonalityTest(displayUserResults = false){
 
+		if (dev) console.log(userAwakeAnswers)
+
 		$('#content').hide();
 		$('#results').show();
 		var personalities = {};
@@ -326,12 +346,8 @@ function personalityTest() {
 
 		}
 
-		updatePersonality(personalities, "password-ranking-test");
+		updatePersonality(personalities, userAwakeAnswers, "password-ranking-test");
 	}
-
-}
-
-function awakeQuestions() {
 
 }
 
@@ -800,12 +816,15 @@ function createAccount() {
     });
 }
 
-function updatePersonality(personalities, nextPath) {
+function updatePersonality(personalities, userAwakeAnswers, nextPath) {
 	$.ajax({
       url: "/personality",
       type: "POST",
-      dataType: "json",
-      data: personalities
+      contentType: "application/json",
+      data: JSON.stringify({
+      	personalities: personalities,
+      	userAwakeAnswers: userAwakeAnswers
+      })
     }).done(function(data) {
       // alert(data);
       continueToNextPage(nextPath);

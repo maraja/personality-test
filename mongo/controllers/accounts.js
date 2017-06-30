@@ -30,14 +30,17 @@ module.exports = {
 	updatePersonality: (userId, personalities) => {
 		console.log("USERID")
 		console.log(userId);
+		console.log("PERSONALITIES")
+		console.log(personalities)
+
 		return new Promise((resolve, reject) => {
 
 			// validate the personalities object
-			if(!("Extraversion" in personalities
-				&& "Agreeableness" in personalities
-				&& "Conscientiousness" in personalities
-				&& "Neuroticism" in personalities
-				&& "Intellect/Imagination" in personalities)){
+			if(!("Extraversion" in personalities["personalities"]
+				&& "Agreeableness" in personalities["personalities"]
+				&& "Conscientiousness" in personalities["personalities"]
+				&& "Neuroticism" in personalities["personalities"]
+				&& "Intellect/Imagination" in personalities["personalities"])){
 
 				return reject(new Error("Incorrect personalities given."));
 
@@ -46,11 +49,15 @@ module.exports = {
 			accountModel.findOneAndUpdate(
 				{ _id: userId }, 
 				{
-					extraversion: personalities["Extraversion"],
-					agreeableness: personalities["Agreeableness"],
-					conscientiousness: personalities["Conscientiousness"],
-					neuroticism: personalities["Neuroticism"],
-					intellect: personalities["Intellect/Imagination"]
+					userAwakeAnswers: personalities["userAwakeAnswers"],
+					personalities: {
+						// personalities["personalities"]
+						extraversion: personalities["personalities"]["Extraversion"],
+						agreeableness: personalities["personalities"]["Agreeableness"],
+						conscientiousness: personalities["personalities"]["Conscientiousness"],
+						neuroticism: personalities["personalities"]["Neuroticism"],
+						intellect: personalities["personalities"]["Intellect/Imagination"]
+					}
 				},
 				{ new: true, upsert: true },
 				(err, result) => {

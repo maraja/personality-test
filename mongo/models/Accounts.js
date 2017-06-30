@@ -9,31 +9,44 @@ module.exports = function() {
 
     // first_name : { type: String, required:true, index: true, lowercase: true, trim:true, unique: true, validate: [util.validate.email, 'not valid'] },
     // _id : { type: ObjectId, required: true, index: true}
-    extraversion: { type: Number },
-    agreeableness: { type: Number },
-    conscientiousness: { type: Number },
-    neuroticism: { type: Number },
-    intellect: { type: Number },
+    personalities: {
+      extraversion: { type: Number },
+      agreeableness: { type: Number },
+      conscientiousness: { type: Number },
+      neuroticism: { type: Number },
+      intellect: { type: Number }
+    },
+    userAwakeAnswers: [{
+      answer: { type: String },
+      question: { type: String }
+    }],
     rankedPasswords: [{
       password: {type: String, default: "" },
       realScore: {type: Number, default: -1},
       userScore: {type: Number, default: -1}
     }],
-    'bank-password': {
+    'bank-password-selection': {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
       justification: {type: String},
       _id: {type: ObjectId}
     },
-    'bank-password-2': {
+    'bank-password-creation': {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
       justification: {type: String},
       _id: {type: ObjectId}
     },
-    'email-password': {
+    'email-password-selection': {
+      score: {type: Number},
+      leak: {type: String},
+      password: {type: String},
+      justification: {type: String},
+      _id: {type: ObjectId}
+    },
+    'email-password-creation': {
       score: {type: Number},
       leak: {type: String},
       password: {type: String},
