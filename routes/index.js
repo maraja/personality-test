@@ -50,7 +50,7 @@ router.post('/questionnaire', function(req, res, next) {
 
 
 router.get('/personality', [tracker.trackProgress], function(req, res, next) {
-	res.render('personality-test', { title: 'Start Pilot' });
+	res.render('personality-test', { title: 'Continue' });
 });
 
 
