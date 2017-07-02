@@ -1,7 +1,7 @@
 $('#results').hide();
 
 // this flag will send array output to console if set to true
-var dev = true;
+var dev = false;
 var userAnswers, userAwakeAnswers;
 var err = {};
 
@@ -346,7 +346,7 @@ function personalityTest() {
 
 		}
 
-		updatePersonality(personalities, userAwakeAnswers, "password-ranking-test");
+		updatePersonality(personalities, userAwakeAnswers, "complete");
 	}
 
 }
@@ -664,10 +664,9 @@ function passwordBankCreationTest(){
 	if (dev) console.log(passwordsFromServer)
 
 	// passwordsFromserver = JSON.parse(passwordsFromServer)
-	var originalPasswords = $('#password-list').text()
 	// console.log(originalPasswords);
 	var displayPasswords = []
-	var chosenPassword = $(), typedPassword = "";
+	var typedPassword = "";
 	
 	$('#btnClick').click(function(){
 		$(".button-row").hide();
@@ -683,52 +682,87 @@ function passwordBankCreationTest(){
 	$('.password-input').blur(function(){
 		
 		if ($('.password-input').val() != ""){
-			chosenPassword = $();
 		    typedPassword = $('.password-input').val()
 		}
-	})
-
-	$('.password').each(function(){
-
-		displayPasswords.push($(this))
-
-		var self = this
-		$(this).mousedown(function(){
-
-			typedPassword = "";
-
-			// remove selected class from every other password
-			displayPasswords.forEach(function(password){
-				if (password != self){
-					password.removeClass('password-selected')
-				}
-			})
-
-		    
-		    $('#next').show();
-			chosenPassword = $(this)
-			// console.log(chosenPassword.text())
-			$(this).toggleClass('password-selected')
-
-		})
 	})
 
 	$('#next').click(function(){
 
 		if (dev) {
-			console.log("chosen password: " + chosenPassword.text())
 			console.log("typed password: " + typedPassword)
 		}
 
-		if (originalPasswords == $('#password-list').text()) {
+		if (typedPassword === "") {
+			swal(
+				'Uh Oh!',
+				'Activity incomplete, please finish the activity before continuing.',
+				'error'
+			)
+		} else {
 
-			if (chosenPassword.text() !== "" && typedPassword !== ""){
-				swal(
-					'Uh Oh!',
-					'Both options selected, please refresh your page and choose one option to continue.',
-					'error'
-				)
-			} else if (chosenPassword.text() === "" && typedPassword === "") {
+			var passwordObj = {}
+			passwordObj['calc_time'] = "";
+			passwordObj['crack_time_display_fast_hash'] = "";
+			passwordObj['crack_time_display_slow_hash'] = "";
+			passwordObj['crack_time_seconds_fast_hash'] = "";
+			passwordObj['crack_time_seconds_slow_hash'] = "";
+			passwordObj['guesses'] = "";
+			passwordObj['guesses_log10'] = "";
+			passwordObj['leak'] = "";
+			passwordObj['password'] = typedPassword;
+			passwordObj['score'] = -1;
+			// passwordObj['leak'] = "";
+
+			if (dev) {
+				console.log(passwordObj);
+				console.log(typedPassword);
+			}
+
+			updatePasswordFromBankCreation(passwordObj, "password-email-creation-test")
+			// submit and route to next test
+			// updatePasswordFromBankCreation(passwordToSend, "complete")
+		}
+
+	})
+}
+
+
+
+function passwordEmailCreationTest(){
+
+	// passwords given from the server are stored here
+	if (dev) console.log(passwordsFromServer)
+
+	// passwordsFromserver = JSON.parse(passwordsFromServer)
+	// console.log(originalPasswords);
+	var displayPasswords = []
+	var typedPassword = "";
+	
+	$('#btnClick').click(function(){
+		$(".button-row").hide();
+		$('#password-test-content').show();
+		$('#prompt-content').show();
+	});
+
+	$('.password-input').focus(function(){
+
+	    $('#next').show();
+	})
+
+	$('.password-input').blur(function(){
+		
+		if ($('.password-input').val() != ""){
+		    typedPassword = $('.password-input').val()
+		}
+	})
+
+	$('#next').click(function(){
+
+		if (dev) {
+			console.log("typed password: " + typedPassword)
+		}
+
+			if (typedPassword === "") {
 				swal(
 					'Uh Oh!',
 					'Activity incomplete, please finish the activity before continuing.',
@@ -737,62 +771,30 @@ function passwordBankCreationTest(){
 			} else {
 
 				var passwordObj = {}
-				
-				if (chosenPassword.text() !== "") {
+				passwordObj['calc_time'] = "";
+				passwordObj['crack_time_display_fast_hash'] = "";
+				passwordObj['crack_time_display_slow_hash'] = "";
+				passwordObj['crack_time_seconds_fast_hash'] = "";
+				passwordObj['crack_time_seconds_slow_hash'] = "";
+				passwordObj['guesses'] = "";
+				passwordObj['guesses_log10'] = "";
+				passwordObj['leak'] = "";
+				passwordObj['password'] = typedPassword;
+				passwordObj['score'] = -1;
+				// passwordObj['leak'] = "";
 
-					passwordsFromServer.forEach(function(pass){
-						if (pass.password == chosenPassword.text()){
-							passwordObj = pass;
-						}
-					})
-
-					if (dev) {
-						console.log(passwordObj);
-						console.log(chosenPassword.text());
-					}
-
-					updatePasswordFromBankSelection2(passwordObj, "complete")
-
-				} else if (typedPassword !== "") {
-					passwordObj['calc_time'] = "";
-					passwordObj['crack_time_display_fast_hash'] = "";
-					passwordObj['crack_time_display_slow_hash'] = "";
-					passwordObj['crack_time_seconds_fast_hash'] = "";
-					passwordObj['crack_time_seconds_slow_hash'] = "";
-					passwordObj['guesses'] = "";
-					passwordObj['guesses_log10'] = "";
-					passwordObj['leak'] = "";
-					passwordObj['password'] = typedPassword;
-					passwordObj['score'] = -1;
-					// passwordObj['leak'] = "";
-
-					if (dev) {
-						console.log(passwordObj);
-						console.log(typedPassword);
-					}
-
-					updatePasswordFromBankSelection2(passwordObj, "complete")
-				} else {
-					swal(
-						'Uh Oh!',
-						'Something went wrong. Please refresh the page and try again.',
-						'error'
-					)
+				if (dev) {
+					console.log(passwordObj);
+					console.log(typedPassword);
 				}
+
+				updatePasswordFromEmailCreation(passwordObj, "personality")
 				// submit and route to next test
-				// updatePasswordFromBankSelection2(passwordToSend, "complete")
-			}
-		} else {
-			// HTML tampered with, display alert.
-			swal(
-				'Uh Oh!',
-				'HTML changed, please revert or refresh page to continue.',
-				'error'
-			)
+				// updatePasswordFromBankCreation(passwordToSend, "complete")
 		}
+
 	})
 }
-
 
 
 
@@ -912,11 +914,36 @@ function updatePasswordFromEmailSelection(password, nextPath){
     });
 }
 
-function updatePasswordFromBankSelection2(password, nextPath){
+function updatePasswordFromBankCreation(password, nextPath){
 	if(dev) console.log(password)
 	// alert()
 	$.ajax({
       url: "/password-bank-creation-test",
+      type: "POST",
+      dataType: "json",
+      data: {
+      	password: password
+      }
+    }).done(function(data) {
+      // alert(data);
+      continueToNextPage(nextPath);
+      if (dev) console.log(data)
+
+    }).fail(function(error) {
+      // alert(error);
+      window.location.pathname = "error";
+      err = error;
+      if (dev) console.log(error)
+
+    });
+}
+
+
+function updatePasswordFromEmailCreation(password, nextPath){
+	if(dev) console.log(password)
+	// alert()
+	$.ajax({
+      url: "/password-email-creation-test",
       type: "POST",
       dataType: "json",
       data: {

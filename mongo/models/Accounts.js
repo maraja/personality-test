@@ -5,10 +5,27 @@ module.exports = function() {
 
   var ObjectId = mongoose.Schema.ObjectId;
 
+  var enumGender = ['male', 'female'];
+  var enumHandedness = ['right', 'left'];
+  var enumSecurityTraining = ['yes', 'no'];
+  var enumPasswordAwareness = ['yes', 'no'];
+  var enumAccountHijackingInvolvement = ['yes', 'no'];
+
   var Accounts = new mongoose.Schema({
 
     // first_name : { type: String, required:true, index: true, lowercase: true, trim:true, unique: true, validate: [util.validate.email, 'not valid'] },
     // _id : { type: ObjectId, required: true, index: true}
+    questionnaire: {
+      gender: { type: String, enum: enumGender },
+      handedness: { type: String, enum: enumHandedness },
+      age: { type: String },
+      occupation: { type: String },
+      security_training: { type: String, enum: enumSecurityTraining },
+      password_awareness: { type: String, enum: enumPasswordAwareness },
+      password_awareness_level: { type: Number, min: 1, max: 5 },
+      computer_skills_level: { type: Number, min: 1, max: 5 },
+      account_hijacking_involvement: { type: String, enum: enumAccountHijackingInvolvement }
+    },
     personalities: {
       extraversion: { type: Number },
       agreeableness: { type: Number },

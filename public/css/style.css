@@ -1,11 +1,15 @@
 body{
-    background-color: #ddd;
+    background-color: #fff;
 }
 .myTable{
     border-width: 5px;
     border-color: black;
     margin: 0 auto;
 
+}
+
+#btnClick { 
+    font-size: 20px;
 }
 
 .myTd{
@@ -20,11 +24,53 @@ tr:nth-child(even) {background-color: #f2f2f2}
     height: 100vh;
 }
 
+.btn-success {
+    border-radius: 0;
+    background-color: #2ecc71;
+    border: 0;
+    padding: 1em 2em;
+    transition: background-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+    transition: background-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out;
+}
+
+.right {
+    float: right;
+}
+
 
 /*QUESTIONNAIRE*/
 
 #questionnaire {
+    margin-top: 5%;
+    font-size: 14.5px;
+    font-family: "Times New Roman", Times, serif;
+    background-color: #eee;
+    padding: 2em;
+    border-radius: 5px;
+    margin-bottom: 10%;
+}
 
+#questionnaire .form-check,
+#questionnaire .form-control {
+    margin-left: 15px;
+}
+
+#questionnaire .form-group {
+    margin-bottom: 30px;
+}
+
+#questionnaire h4 {
+    margin-bottom: 15px;
+}
+
+#questionnaire input[type=radio] {
+    margin-right: 7px;
 }
 
 
@@ -89,7 +135,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
 }
 
 .answerRow > div:hover {
-    border-color: #00ff00;
+    border-color: #2ecc71;
     /* http://tobiasahlin.com/blog/how-to-animate-box-shadow/ <--- read this for performance increase */
     /*box-shadow: 0px 0px 0px #555;*/
 }
@@ -145,7 +191,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
 #password-containers .password-container { border: 1px solid #eee; }
 
 .password-container-highlight {
-    background: #54ff40;
+    background: #27ae60;
 }
 .password-container-disabled {
     background: red;
@@ -168,7 +214,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
 
 .password-selected {
     transition: border 0.3s ease-in-out;
-    border: solid 4px #00ff00;
+    border: solid 4px #2ecc71;
 }
 
 #password-selection-test {
@@ -202,6 +248,31 @@ tr:nth-child(even) {background-color: #f2f2f2}
     padding: 15px;
     font-size: 17px;
     /*margin: 50px;*/
+}
+
+
+/*THANK YOU*/
+
+.thank_you { 
+    margin-top: 15%;
+    font-size: 14.5px;
+    font-family: "Times New Roman", Times, serif;
+    background-color: #eee;
+    padding: 2em;
+    border-radius: 5px;
+    margin-bottom: 10%;
+}
+
+.thank_you p {
+    margin: 0 0 15px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.thank_you .signature {
+    margin: 0 0 20px;
+}
+.thank_you .signature p {
+    margin: 0;
 }
 
 

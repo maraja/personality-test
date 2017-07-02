@@ -3,6 +3,7 @@ extends layout
 block content
 	.container.main-container
 		#questionnaire
+			h1 Preliminary Questionnaire
 			form(action="/questionnaire" method="POST")
 				fieldset.form-group
 					h4 Gender?
@@ -56,7 +57,7 @@ block content
 							|         More than 40 years.
 
 
-				fieldset
+				fieldset.form-group
 					h4 Occupation?
 					select#occupation.form-control.dropdown(name='occupation')
 						option(value='', selected='selected', disabled='disabled') -- select one --
@@ -160,7 +161,7 @@ block content
 						label.form-check-label
 							input#optionsRadios2.form-check-input(type='radio', name='account_hijacking_involvement', value='no')
 							|         No
-
-				button.btn.btn-primary(type='submit') Submit
+				fieldset.form-group
+					button.btn.btn-success.right(type='submit') Submit
 
 			

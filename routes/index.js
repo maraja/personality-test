@@ -21,14 +21,31 @@ router.get('/complete', [tracker.trackProgress], function(req, res, next) {
 	res.render('complete', { title: 'Finished' });
 });
 
+// for testing
+// router.get('/complete', function(req, res, next) {
+// 	res.render('complete', { title: 'Finished' });
+// });
+
 
 router.get('/questionnaire', [tracker.trackProgress], function(req, res, next) {
-	res.render('questionnaire', { title: 'Start Pilot' });
+	res.render('questionnaire', { title: 'Continue' });
 });
 
 router.post('/questionnaire', function(req, res, next) {
-	console.log("YOU TYPED IN:")
+	console.log("QUESTIONNAIRE:")
 	console.log(req.body)
+
+	accounts.updateQuestionnaire(req.session.accountId, req.body)
+	.then(result => {
+
+		req.session.questionnaireComplete = true;
+		res.status(200).redirect('/password-ranking-test')
+
+	}).catch(error => {
+		req.session.questionnaireComplete = false;
+		req.session.error = error;
+		res.status(400).render('error', { error: error })
+	})
 });
 
 
@@ -49,7 +66,7 @@ router.post('/personality', function(req, res, next) {
 
 		req.session.personalityTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({error: error})
+		res.status(400).json({error: error})
 
 	})
 })
@@ -97,11 +114,11 @@ router.get('/password-ranking-test', [tracker.trackProgress], function(req, res,
 		// testing
 		// console.log("Password: " + passwords[0].password)
 		// console.log(Object.keys(passwords[0]))
-		res.status(200).render('password-ranking-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-ranking-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
-		res.status(500).redirect('/error')
+		res.status(400).redirect('/error')
 
 	})
 
@@ -121,7 +138,7 @@ router.post('/password-ranking-test', [tracker.trackProgress], function(req, res
 
 		req.session.passwordRankingTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({name: error.name, message: error.message})
+		res.status(400).json({name: error.name, message: error.message})
 
 	})
 });
@@ -130,11 +147,11 @@ router.get('/password-bank-selection-test', [tracker.trackProgress], function(re
 
 	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-bank-selection-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-bank-selection-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
-		res.status(500).redirect('/error')
+		res.status(400).redirect('/error')
 
 	})
 
@@ -157,7 +174,7 @@ router.post('/password-bank-selection-test', [tracker.trackProgress], function(r
 		console.log(error)
 		req.session.passwordSelectionBankTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({name: error.name, message: error.message})
+		res.status(400).json({name: error.name, message: error.message})
 
 	})
 });
@@ -166,11 +183,11 @@ router.get('/password-email-selection-test', [tracker.trackProgress], function(r
 
 	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-email-selection-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-email-selection-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
-		res.status(500).redirect('/error')
+		res.status(400).redirect('/error')
 
 	})
 
@@ -193,7 +210,7 @@ router.post('/password-email-selection-test', [tracker.trackProgress], function(
 		console.log(error)
 		req.session.passwordSelectionEmailTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({name: error.name, message: error.message})
+		res.status(400).json({name: error.name, message: error.message})
 
 	})
 });
@@ -204,11 +221,11 @@ router.get('/password-bank-creation-test', [tracker.trackProgress], function(req
 
 	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-bank-creation-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-bank-creation-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
-		res.status(500).redirect('/error')
+		res.status(400).redirect('/error')
 
 	})
 
@@ -222,16 +239,16 @@ router.post('/password-bank-creation-test', [tracker.trackProgress], function(re
 	accounts.insertTestPassword(req.session.accountId, req.body, 'bank-password-creation')
 	.then(result => {
 
-		req.session.passwordSelectionBankTest2Complete = true;
+		req.session.passwordCreationBankTestComplete = true;
 		res.status(200).json({result: result})
 
 	}).catch(error => {
 
 		console.log("ERROR")
 		console.log(error)
-		req.session.passwordSelectionBankTest2Complete = false;
+		req.session.passwordCreationBankTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({name: error.name, message: error.message})
+		res.status(400).json({name: error.name, message: error.message})
 
 	})
 });
@@ -241,11 +258,11 @@ router.get('/password-email-creation-test', [tracker.trackProgress], function(re
 
 	allPasswords.getPasswords()
 	.then(passwords => {
-		res.status(200).render('password-email-creation-test', { title: 'Continue Pilot', passwords: passwords });
+		res.status(200).render('password-email-creation-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
 		req.session.error = error;
-		res.status(500).redirect('/error')
+		res.status(400).redirect('/error')
 
 	})
 
@@ -259,16 +276,16 @@ router.post('/password-email-creation-test', [tracker.trackProgress], function(r
 	accounts.insertTestPassword(req.session.accountId, req.body, 'email-password-creation')
 	.then(result => {
 
-		req.session.passwordSelectionBankTest2Complete = true;
+		req.session.passwordCreationEmailTestComplete = true;
 		res.status(200).json({result: result})
 
 	}).catch(error => {
 
 		console.log("ERROR")
 		console.log(error)
-		req.session.passwordSelectionBankTest2Complete = false;
+		req.session.passwordCreationEmailTestComplete = false;
 		req.session.error = error;
-		res.status(500).json({name: error.name, message: error.message})
+		res.status(400).json({name: error.name, message: error.message})
 
 	})
 });

@@ -31,23 +31,10 @@ module.exports = {
 				break;
 
 
-			case '/personality':
-				if (!req.session.personalityTestComplete){
-					return next();
-				} else {
-					if (req.method == "GET"){
-						res.redirect('/password-ranking-test')
-					} else if (req.method == "POST"){
-						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
-						res.status(400).json(req.session.error)
-					}
-				}
-				break;
-
 			case '/password-ranking-test':
-				if (dev) req.session.personalityTestComplete = true;
+				if (dev) req.session.questionnaireComplete = true;
 
-				if (req.session.personalityTestComplete 
+				if (req.session.questionnaireComplete 
 					&& !req.session.passwordRankingTestComplete){
 
 					return next();
@@ -62,10 +49,10 @@ module.exports = {
 				break;
 
 			case '/password-bank-selection-test':
-				if (dev) req.session.personalityTestComplete = true;
+				if (dev) req.session.questionnaireComplete = true;
 				if (dev) req.session.passwordRankingTestComplete = true;
 
-				if (req.session.personalityTestComplete 
+				if (req.session.questionnaireComplete
 					&& req.session.passwordRankingTestComplete
 					&& !req.session.passwordSelectionBankTestComplete){
 
@@ -81,11 +68,11 @@ module.exports = {
 				break;
 
 			case '/password-email-selection-test':
-				if (dev) req.session.personalityTestComplete = true;
+				if (dev) req.session.questionnaireComplete = true;
 				if (dev) req.session.passwordRankingTestComplete = true;
 				if (dev) req.session.passwordSelectionBankTestComplete = true;
 
-				if (req.session.personalityTestComplete 
+				if (req.session.questionnaireComplete
 					&& req.session.passwordRankingTestComplete
 					&& req.session.passwordSelectionBankTestComplete
 					&& !req.session.passwordSelectionEmailTestComplete){
@@ -93,7 +80,7 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/password-bank-selection-test-2')
+						res.redirect('/password-bank-creation-test')
 					} else if (req.method == "POST"){
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
@@ -103,12 +90,12 @@ module.exports = {
 
 
 			case '/password-bank-creation-test':
-				if (dev) req.session.personalityTestComplete = true;
+				if (dev) req.session.questionnaireComplete = true;
 				if (dev) req.session.passwordRankingTestComplete = true;
 				if (dev) req.session.passwordSelectionBankTestComplete = true;
 				if (dev) req.session.passwordSelectionEmailTestComplete = true;
 
-				if (req.session.personalityTestComplete 
+				if (req.session.questionnaireComplete
 					&& req.session.passwordRankingTestComplete
 					&& req.session.passwordSelectionBankTestComplete
 					&& req.session.passwordSelectionEmailTestComplete
@@ -116,24 +103,30 @@ module.exports = {
 
 					return next();
 				} else {
+
 					if (req.method == "GET"){
-						res.redirect('/')
+
+						res.redirect('/password-email-creation-test')
+
 					} else if (req.method == "POST"){
+
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
+
 					}
 				}
 				break;
 
 
 			case '/password-email-creation-test':
-				if (dev) req.session.personalityTestComplete = true;
+
+				if (dev) req.session.questionnaireComplete = true;
 				if (dev) req.session.passwordRankingTestComplete = true;
 				if (dev) req.session.passwordSelectionBankTestComplete = true;
 				if (dev) req.session.passwordSelectionEmailTestComplete = true;
-				if (dev) req.session.passwoCreationBankTestComplete = true;
+				if (dev) req.session.passwordCreationBankTestComplete = true;
 
-				if (req.session.personalityTestComplete 
+				if (req.session.questionnaireComplete 
 					&& req.session.passwordRankingTestComplete
 					&& req.session.passwordSelectionBankTestComplete
 					&& req.session.passwordSelectionEmailTestComplete
@@ -143,10 +136,45 @@ module.exports = {
 					return next();
 				} else {
 					if (req.method == "GET"){
-						res.redirect('/')
+
+						res.redirect('/personality')
+
 					} else if (req.method == "POST"){
+
 						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
 						res.status(400).json(req.session.error)
+
+					}
+				}
+				break;
+
+
+
+			case '/personality':
+				if (req.session.questionnaireComplete 
+					&& req.session.passwordRankingTestComplete
+					&& req.session.passwordSelectionBankTestComplete
+					&& req.session.passwordSelectionEmailTestComplete
+					&& req.session.passwordCreationBankTestComplete
+					&& req.session.passwordCreationEmailTestComplete
+					&& !req.session.personalityTestComplete){
+
+					return next();
+
+				} else {
+					if (req.method == "GET" && req.session.personalityTestComplete){
+
+						res.redirect('/complete')
+
+					} if (req.method == "GET"){
+
+						res.redirect('/')
+
+					} else if (req.method == "POST"){
+
+						req.session.error = {name:"UNAUTHORIZED", message:"Unauthorized to make this call."}
+						res.status(400).json(req.session.error)
+
 					}
 				}
 				break;
@@ -155,6 +183,7 @@ module.exports = {
 			case '/complete':
 
 				if (req.session.personalityTestComplete 
+					&& req.session.questionnaireComplete
 					&& req.session.passwordRankingTestComplete
 					&& req.session.passwordSelectionBankTestComplete
 					&& req.session.passwordSelectionEmailTestComplete

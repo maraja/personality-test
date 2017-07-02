@@ -27,6 +27,26 @@ module.exports = {
 		})
 	},
 
+	updateQuestionnaire: (userId, questionnaire) => {
+
+		return new Promise((resolve, reject) => {
+
+			accountModel.findOneAndUpdate(
+				{ _id: userId }, 
+				{
+					questionnaire: questionnaire
+				},
+				{ new: true, upsert: true },
+				(err, result) => {
+				if (err) {
+					return reject(err);
+				} else {
+					return resolve(result);
+				}
+			})
+		})
+	},
+
 	updatePersonality: (userId, personalities) => {
 		console.log("USERID")
 		console.log(userId);
