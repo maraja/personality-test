@@ -115,6 +115,14 @@ function init() {
 
 function createQuestionnaire() {
 
+	$("form[name='questionnaire']").submit(function(e){
+		// e.preventDefault()/
+		$("#questionnaire").hide();
+		$(".loader-container").show();
+		console.log("HELLO")
+		return true;
+	})
+
 }
 
 

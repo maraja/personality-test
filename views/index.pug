@@ -1,1 +1,10 @@
-index.pug
+extends layout
+
+block content
+	.container.main-container
+		#personality-test-content
+			#question
+		#results(style="display:none;")
+		.button-row
+			div
+				a#btnClick(title=title)

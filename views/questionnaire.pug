@@ -2,9 +2,11 @@ extends layout
 
 block content
 	.container.main-container
+		.loader-container(style="display:none;")
+			.loader
 		#questionnaire
 			h1 Preliminary Questionnaire
-			form(action="/questionnaire" method="POST")
+			form(name="questionnaire" action="/questionnaire" method="POST")
 				fieldset.form-group
 					h4 Gender?
 					.form-check
