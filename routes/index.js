@@ -17,14 +17,14 @@ router.get('/error', function(req, res, next) {
 	res.render('error', { title: 'Something went wrong.', error: req.session.error });
 });
 
-router.get('/complete', [tracker.trackProgress], function(req, res, next) {
-	res.render('complete', { title: 'Finished' });
-});
-
-// for testing
-// router.get('/complete', function(req, res, next) {
+// router.get('/complete', [tracker.trackProgress], function(req, res, next) {
 // 	res.render('complete', { title: 'Finished' });
 // });
+
+// for testing
+router.get('/complete', function(req, res, next) {
+	res.render('complete', { title: 'Finished' });
+});
 
 
 router.get('/questionnaire', [tracker.trackProgress], function(req, res, next) {

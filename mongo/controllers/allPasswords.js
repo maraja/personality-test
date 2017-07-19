@@ -1,4 +1,5 @@
-const passwordModel = require('../models/AllPasswords')();
+// const passwordModel = require('../models/AllPasswords')();
+const passwordModel = require('../models/FilteredPasswords')();
 
 const config = require('../../config');
 

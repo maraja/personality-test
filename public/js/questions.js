@@ -82,7 +82,7 @@ var questionReverse = [
 var awakeQuestions = [
 	"I enjoy watching sports",
 	"I enjoy watching the following sport the most",
-	"I do not enjoy watching sports"
+	"I dislike enjoy watching sports"
 ]
 
 var awakeAnswers_1 = [
