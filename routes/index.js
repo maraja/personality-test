@@ -3,6 +3,7 @@ var router = express.Router();
 
 var accounts = require('../mongo/controllers/accounts')
 let allPasswords = require('../mongo/controllers/allPasswords');
+let completedTests = require('../mongo/controllers/completedTests');
 let tracker = require('../helpers/tracker');
 
 // let dev = true;
@@ -17,14 +18,30 @@ router.get('/error', function(req, res, next) {
 	res.render('error', { title: 'Something went wrong.', error: req.session.error });
 });
 
-// router.get('/complete', [tracker.trackProgress], function(req, res, next) {
-// 	res.render('complete', { title: 'Finished' });
-// });
+router.get('/complete', [tracker.trackProgress], function(req, res, next) {
+	
+	completedTests.addToCompletedTests(req.session.accountId)
+	.then(() => {
+		res.render('complete', { title: 'Finished' });
+	}).catch(error => {
+		req.session.error = error;
+		res.status(400).render('error', { error: error })
+	})
+
+});
 
 // for testing
-router.get('/complete', function(req, res, next) {
-	res.render('complete', { title: 'Finished' });
-});
+// router.get('/complete', function(req, res, next) {
+	
+// 	completedTests.addToCompletedTests(req.session.accountId)
+// 	.then(() => {
+// 		res.render('complete', { title: 'Finished' });
+// 	}).catch(error => {
+// 		req.session.error = error;
+// 		res.status(400).render('error', { error: error })
+// 	})
+	
+// });
 
 
 router.get('/questionnaire', [tracker.trackProgress], function(req, res, next) {
