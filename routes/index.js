@@ -35,7 +35,7 @@ router.get('/complete', [tracker.trackProgress], function(req, res, next) {
 	
 // 	completedTests.addToCompletedTests(req.session.accountId)
 // 	.then(() => {
-// 		res.render('complete', { title: 'Finished' });
+// 		res.render('complete', { title: 'Finished', userId: req.session.accountId });
 // 	}).catch(error => {
 // 		req.session.error = error;
 // 		res.status(400).render('error', { error: error })

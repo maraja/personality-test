@@ -253,8 +253,20 @@ body{
 
 /*THANK YOU*/
 
+.mturk_code {
+    display: inline-block;
+    margin-top: 2em;
+    background: #555;
+    border-radius: 5px;
+    color: rgba(46, 204, 113,1.0);
+    padding: 5%;
+    font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+    font-weight: 600;
+    font-size: 40px;
+}
+
 .thank_you { 
-    margin-top: 15%;
+    margin-top: 10%;
     font-size: 14.5px;
     font-family: "Times New Roman", Times, serif;
     background-color: #eee;
