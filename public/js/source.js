@@ -980,7 +980,8 @@ function continueToNextPage(nextPath){
 	  allowOutsideClick: false,
 	  // confirmButtonColor: '#3085d6',
 	  confirmButtonText: 'Continue'
-	}).then(function () {
+	}).then(function() {
+		console.log("HELLO")
 		$("#test-container").toggle();
 		$(".loader-container").toggle();
 	  window.location.pathname = nextPath;

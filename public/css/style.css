@@ -1,6 +1,14 @@
 body{
     background-color: #fff;
 }
+
+body h3 {
+    letter-spacing: 1.5px !important;
+    line-height: 32px !important;
+}
+.underline {
+    text-decoration: underline;
+}
 .myTable{
     border-width: 5px;
     border-color: black;

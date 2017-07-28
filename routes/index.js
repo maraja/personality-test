@@ -167,6 +167,7 @@ router.get('/password-bank-selection-test', [tracker.trackProgress], function(re
 		res.status(200).render('password-bank-selection-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
+		console.log(error)
 		req.session.error = error;
 		res.status(400).redirect('/error')
 
