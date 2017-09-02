@@ -14,15 +14,26 @@ module.exports = {
 				database: "personality-test"
 			}
 		},
+		// production: {
+		// 	environment: "production",
+		// 	db: {
+		// 		dialect: "mongodb",
+		// 		username: "dev",
+		// 		password: "P3rs0nal1tYT35T!",
+		// 		host: "ds133331.mlab.com",
+		// 		port: "33331",
+		// 		database: "heroku_r2kwj163"
+		// 	}
+		// },
 		production: {
 			environment: "production",
 			db: {
 				dialect: "mongodb",
 				username: "dev",
 				password: "P3rs0nal1tYT35T!",
-				host: "ds133331.mlab.com",
-				port: "33331",
-				database: "heroku_r2kwj163"
+				host: "199.212.33.66",
+				port: "27017",
+				database: "personality-test"
 			}
 		}
 	}
