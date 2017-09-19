@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "version": "0.0.0",
+  "name": "personality test server",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start:dev": "node ./bin/www",
