@@ -10,7 +10,7 @@ let tracker = require('../helpers/tracker');
 
 /* GET home page. */
 router.get('/', [tracker.trackProgress], function(req, res, next) {
-	res.render('questionnaire', { title: 'Start Experiment' });
+	res.render('questionnaire', { title: 'Begin' });
 });
 
 router.get('/error', function(req, res, next) {

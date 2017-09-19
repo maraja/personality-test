@@ -115,6 +115,13 @@ function init() {
 
 function createQuestionnaire() {
 
+
+	$('#btnClick').click(function(){
+		$(this).hide();
+		$('#instructions').hide();
+		$('#questionnaire').show();
+	});
+
 	// validate that the form has been filled out before moving forward
 
 	$("form[name='questionnaire']").submit(function(e){

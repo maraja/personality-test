@@ -1,10 +1,10 @@
 extends layout
 
 block content
-	.container.main-container
-		.loader-container(style="display:none;")
-			.loader
-		#questionnaire
+	#instructions
+		h3 Thank you for agreeing to participate in this experiment! You will be greeted with some questions on the following page. Answer them to the best of your ability before moving forward.
+	.container.main-container#questionnaire(style="display:none;")
+		
 			h1 Preliminary Questionnaire
 			form(name="questionnaire" action="/questionnaire" method="POST")
 				fieldset.form-group
@@ -93,7 +93,7 @@ block content
 
 
 				fieldset.form-group
-					h4 Have you ever had any password seucrity awareness training? (e.g. learning the difference between a weaker and stronger password)
+					h4 Have you ever had any password security awareness training? (e.g. learning the difference between a weaker and stronger password)
 					.form-check
 						label.form-check-label
 							input#optionsRadios1.form-check-input(type='radio', name='password_awareness', value='yes')
@@ -106,7 +106,7 @@ block content
 
 
 				fieldset.form-group
-					h4 If you answered 'Yes' to the question above, on a scale from 1 (Novice) to 5 (Expert), how would you rank your password security awareness?
+					h4 On a scale from 1 (Novice) to 5 (Expert), how would you rank your password security awareness?
 					.form-check
 						label.form-check-label
 							input#optionsRadios1.form-check-input(type='radio', name='password_awareness_level', value='1')
@@ -168,3 +168,7 @@ block content
 					button.btn.btn-success.right(type='submit') Submit
 
 			
+
+	.button-row
+		div
+			a#btnClick(title=title)
