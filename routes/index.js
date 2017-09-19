@@ -10,7 +10,7 @@ let tracker = require('../helpers/tracker');
 
 /* GET home page. */
 router.get('/', [tracker.trackProgress], function(req, res, next) {
-	res.render('questionnaire', { title: 'Start Pilot' });
+	res.render('questionnaire', { title: 'Start Experiment' });
 });
 
 router.get('/error', function(req, res, next) {
@@ -22,7 +22,7 @@ router.get('/complete', [tracker.trackProgress], function(req, res, next) {
 	
 	completedTests.addToCompletedTests(req.session.accountId)
 	.then(() => {
-		res.render('complete', { title: 'Finished' });
+		res.render('complete', { title: 'Finished', userId: req.session.accountId });
 	}).catch(error => {
 		req.session.error = error;
 		res.status(400).render('error', { error: error })
@@ -167,6 +167,7 @@ router.get('/password-bank-selection-test', [tracker.trackProgress], function(re
 		res.status(200).render('password-bank-selection-test', { title: 'Continue', passwords: passwords });
 	}).catch(error => {
 
+		console.log(error)
 		req.session.error = error;
 		res.status(400).redirect('/error')
 

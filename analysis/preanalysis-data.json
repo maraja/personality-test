@@ -1,0 +1,1008 @@
+[
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "silambarasan"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "missing"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 1,
+            "password" : "amber99"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 3,
+            "password" : "pinkpunk1"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 2,
+            "password" : "jimjim2"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Neither Inaccurate nor Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Neither Inaccurate nor Accurate",
+            "question" : "I do not enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "no",
+        "computer_skills_level" : 5,
+        "password_awareness_level" : 5,
+        "password_awareness" : "yes",
+        "security_training" : "yes",
+        "occupation" : "Computer Science and IT-related Occupations",
+        "age" : "40-",
+        "handedness" : "right",
+        "gender" : "female"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "The longest one and not a dictionary word",
+        "password" : "pasteldelimon",
+        "score" : 4,
+        "leak" : "rockyouleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "I would rather the one with the numbers only, but knowing the mail system won't accept it, went to what I thought is the second best",
+        "password" : "17defebrero",
+        "score" : 4,
+        "leak" : "rockyouleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "OrangeWater258",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "BananaIron729",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 95,
+        "neuroticism" : 50,
+        "conscientiousness" : 90,
+        "agreeableness" : 85,
+        "extraversion" : 75
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "11111111111111111111111111111111111"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "spanky7"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "2sheepshank2"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "squidward1"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "HAMTARO"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Moderately Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Moderately Accurate",
+            "question" : "I do not enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "no",
+        "computer_skills_level" : 3,
+        "password_awareness_level" : 1,
+        "password_awareness" : "no",
+        "security_training" : "no",
+        "occupation" : "Architecture and Engineering Occupations",
+        "age" : "-20",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "seemed most complex/ hardest to crack",
+        "password" : "weiliangjin",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "uses numbers and letters, very strong",
+        "password" : "arifin192002",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "5@v@Na4!",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Slamash0522",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 90,
+        "neuroticism" : 45,
+        "conscientiousness" : 60,
+        "agreeableness" : 90,
+        "extraversion" : 100
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "Whatever"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "salad13"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "Paaseiland2"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "Leibeemd3"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "pohoeuy"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Soccer",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I do not enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 5,
+        "password_awareness_level" : 5,
+        "password_awareness" : "yes",
+        "security_training" : "yes",
+        "occupation" : "Other Occupations",
+        "age" : "26-30",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "it looks random",
+        "password" : "itisgpoda",
+        "score" : 3,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "All of them seemed weak!",
+        "password" : "Ninoman1",
+        "score" : 2,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "hg5dMk~u",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "hg5dMk~u",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 75,
+        "neuroticism" : 55,
+        "conscientiousness" : 95,
+        "agreeableness" : 60,
+        "extraversion" : 30
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "december"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "ladybird"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "maryjane1"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "shrdlu2010az"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "ipodnano1"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Moderately Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Basketball",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Neither Inaccurate nor Accurate",
+            "question" : "I dislike enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 4,
+        "password_awareness_level" : 1,
+        "password_awareness" : "no",
+        "security_training" : "no",
+        "occupation" : "Other Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "Difficult to guess",
+        "password" : "2fast2furious",
+        "score" : 3,
+        "leak" : "rockyouleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "Difficult to guess",
+        "password" : "xzs5fviopwg6",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "bananaboat25",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "bananaboat25",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 95,
+        "neuroticism" : 90,
+        "conscientiousness" : 95,
+        "agreeableness" : 95,
+        "extraversion" : 100
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "spiderman"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "lovehurts"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "iloveandy"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "valettab380"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "promo2006"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I dislike enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 5,
+        "password_awareness_level" : 4,
+        "password_awareness" : "yes",
+        "security_training" : "yes",
+        "occupation" : "Computer Science and IT-related Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "looks easy to remember and relatively strong.",
+        "password" : "johnterry26",
+        "score" : 3,
+        "leak" : "rockyouleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "looks really strong.",
+        "password" : "shrdlu2010az",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Opt1mu$Pr1m3",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "C0mpu73r$3cur1tY",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 85,
+        "neuroticism" : 30,
+        "conscientiousness" : 65,
+        "agreeableness" : 60,
+        "extraversion" : 75
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "babyface"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 3,
+            "password" : "2fast2furious"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "internet"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 4,
+            "password" : "chenleixu201"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 2,
+            "password" : "solecito"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Moderately Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I dislike enjoy watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 3,
+        "password_awareness_level" : 3,
+        "password_awareness" : "yes",
+        "security_training" : "no",
+        "occupation" : "Other Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "female"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "I chose this password because there is a combination of random mixed letters and numerical values.",
+        "password" : "shrdlu2010az",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "I chose this password because of the random letters combination",
+        "password" : "chenleixu201",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Ajdertkl ",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Ajdertkl",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 80,
+        "neuroticism" : 60,
+        "conscientiousness" : 70,
+        "agreeableness" : 70,
+        "extraversion" : 70
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 1,
+            "password" : "revolution"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 0,
+            "password" : "cristian"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "2fast2furious"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "scotland1"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "shrdlu2010az"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Not Applicable",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I dislike watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "no",
+        "computer_skills_level" : 5,
+        "password_awareness_level" : 1,
+        "password_awareness" : "no",
+        "security_training" : "no",
+        "occupation" : "Computer Science and IT-related Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "Higher entropy than other passwords, less likely to be in a rainbow table",
+        "password" : "dlanddr84041q",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "Higher entropy and less likely to be on a rainbow table, (assuming it is not already in use)",
+        "password" : "dlanddr84041q",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "F4T.Ca7_A27",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "gen3r41En70py",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 100,
+        "neuroticism" : 85,
+        "conscientiousness" : 50,
+        "agreeableness" : 90,
+        "extraversion" : 60
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "slipknot"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "lovehurts"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 2,
+            "password" : "highschoolmusical"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "myhusband1"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "xzs5fviopwg6"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Not Applicable",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I dislike watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 4,
+        "password_awareness_level" : 3,
+        "password_awareness" : "yes",
+        "security_training" : "yes",
+        "occupation" : "Computer Science and IT-related Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "It had a combination of letters and numbers and was more random than the alternatives within the set of choices.",
+        "password" : "valettab380",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "It was the most random combination of letters and numbers within the provided choices.",
+        "password" : "dlanddr84041q",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "aqPjsr2!s3201",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "sj3SjK23@23",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 90,
+        "neuroticism" : 35,
+        "conscientiousness" : 65,
+        "agreeableness" : 80,
+        "extraversion" : 80
+    }
+},
+
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "pictures"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 2,
+            "password" : "beachbabe"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 1,
+            "password" : "playboy69"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 3,
+            "password" : "lilwayne2"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "valettab380"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Moderately Inaccurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I dislike watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "no",
+        "computer_skills_level" : 4,
+        "password_awareness_level" : 1,
+        "password_awareness" : "no",
+        "security_training" : "no",
+        "occupation" : "Computer Science and IT-related Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "male"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "It's a random set of characters, and it seemed to be the most secure option",
+        "password" : "xzs5fviopwg6",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "It is a random set of characters and seemed to be the most secure",
+        "password" : "shrdlu2010az",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Hello Dillon, how are you today?",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Dillon, this is your email password",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 65,
+        "neuroticism" : 50,
+        "conscientiousness" : 55,
+        "agreeableness" : 30,
+        "extraversion" : 35
+    }
+},
+
+{
+    "_id" : "",
+    "rankedPasswords" : [ 
+        {
+            "_id" : "",
+            "userScore" : 2,
+            "realScore" : 3,
+            "password" : "promo2006"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 0,
+            "realScore" : 0,
+            "password" : "christopher"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 1,
+            "realScore" : 1,
+            "password" : "babyface"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 4,
+            "realScore" : 4,
+            "password" : "chenleixu201"
+        }, 
+        {
+            "_id" : "",
+            "userScore" : 3,
+            "realScore" : 2,
+            "password" : "babygirl7"
+        }
+    ],
+    "userAwakeAnswers" : [ 
+        {
+            "answer" : "Very Accurate",
+            "question" : "I enjoy watching sports",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Hockey",
+            "question" : "I enjoy watching the following sport the most",
+            "_id" : ""
+        }, 
+        {
+            "answer" : "Very Inaccurate",
+            "question" : "I dislike watching sports",
+            "_id" : ""
+        }
+    ],
+    "__v" : 0,
+    "questionnaire" : {
+        "account_hijacking_involvement" : "yes",
+        "computer_skills_level" : 5,
+        "password_awareness_level" : 3,
+        "password_awareness" : "yes",
+        "security_training" : "yes",
+        "occupation" : "Other Occupations",
+        "age" : "20-25",
+        "handedness" : "right",
+        "gender" : "female"
+    },
+    "bank-password-selection" : {
+        "_id" : "",
+        "justification" : "I chose this password because it has a combination of numbers in between each word",
+        "password" : "2fast2furious",
+        "score" : 3,
+        "leak" : "rockyouleak"
+    },
+    "email-password-selection" : {
+        "_id" : "",
+        "justification" : "I chose this password because it has a combination of numbers and mixed letters",
+        "password" : "dlanddr84041q",
+        "score" : 4,
+        "leak" : "linkedinleak"
+    },
+    "bank-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Y@cb7wYbY!",
+        "score" : -1,
+        "leak" : ""
+    },
+    "email-password-creation" : {
+        "_id" : null,
+        "justification" : null,
+        "password" : "Y@cb7wYbY!",
+        "score" : -1,
+        "leak" : ""
+    },
+    "personalities" : {
+        "intellect" : 70,
+        "neuroticism" : 50,
+        "conscientiousness" : 90,
+        "agreeableness" : 70,
+        "extraversion" : 95
+    }
+}]

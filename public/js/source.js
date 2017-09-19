@@ -115,12 +115,40 @@ function init() {
 
 function createQuestionnaire() {
 
+	// validate that the form has been filled out before moving forward
+
 	$("form[name='questionnaire']").submit(function(e){
-		// e.preventDefault()/
-		$("#questionnaire").hide();
-		$(".loader-container").show();
-		console.log("HELLO")
-		return true;
+
+		var all_answered = true;
+
+        if ($("input:radio[name='gender']:checked").length == 0 ||
+            $("input:radio[name='handedness']:checked").length == 0 ||
+            $("input:radio[name='age']:checked").length == 0 ||
+            $("input:radio[name='security_training']:checked").length == 0 ||
+            $("input:radio[name='password_awareness']:checked").length == 0 ||
+            $("input:radio[name='password_awareness_level']:checked").length == 0 ||
+            $("input:radio[name='computer_skills_level']:checked").length == 0 ||
+            $("input:radio[name='account_hijacking_involvement']:checked").length == 0) {
+
+			e.preventDefault();
+			all_answered = false
+
+		}
+
+        if (all_answered == false) {
+			swal(
+				'Uh Oh!',
+				'Please fill out all the information before moving forward',
+				'error'
+			)
+            return false;
+        } else {
+			// e.preventDefault()/
+			$("#questionnaire").hide();
+			$(".loader-container").show();
+			return true;
+        }
+
 	})
 
 }
@@ -141,6 +169,7 @@ function personalityTest() {
 	var currentQuestion = 0;
 	$('#btnClick').click(function(){
 		$(this).hide();
+		$('#instructions').hide();
 		$('#content').show();
 		createQuestion();
 	});
@@ -980,7 +1009,8 @@ function continueToNextPage(nextPath){
 	  allowOutsideClick: false,
 	  // confirmButtonColor: '#3085d6',
 	  confirmButtonText: 'Continue'
-	}).then(function () {
+	}).then(function() {
+		console.log("HELLO")
 		$("#test-container").toggle();
 		$(".loader-container").toggle();
 	  window.location.pathname = nextPath;
